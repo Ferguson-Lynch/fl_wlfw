@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+library(stringr)
 
 ```
 
@@ -24,30 +25,38 @@ df <- read.csv("transformed_data.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Add IRA Column
 df <- df %>%
-  mutate(IRA = grepl("(IRA)", CP_NAME, ignore.case = TRUE))
+  mutate(IRA = grepl("(IRA)", CP_NAME, ignore.case = TRUE)) %>%
+  #Create New Column from CP_NAME column that parses out the String between | and |
+  mutate(LABEL_NAME = str_extract(CP_NAME, "(?<=\\|)(.*?)(?=\\|)")) %>%
+   mutate(LABEL_NAME_CLEAN =ifelse(str_detect(LABEL_NAME, "(IRA)"), str_replace(LABEL_NAME, "(IRA)", " "), LABEL_NAME)) 
+  # Remove all parentheses from the strings column LABEL_NAME_CLEAN 
+  df$LABEL_NAME_CLEAN <- gsub("\\(|\\)", "", df$LABEL_NAME_CLEAN)
 
 
 # Create New Dataframe summarizing the data
 cpsums <- df %>%
-  group_by(CP_NAME,UNIT, IRA) %>%
+  group_by(CP_NAME,UNIT, IRA,LABEL_NAME_CLEAN) %>%
   summarize(sum_CP_NAME = sum(VALUE, na.rm = TRUE)) 
 
 cpsums_acres <- cpsums %>%
   filter(UNIT == "Ac") %>%
-  select(CP_NAME, sum_CP_NAME, UNIT, IRA) 
+  select(CP_NAME, sum_CP_NAME, UNIT, IRA,LABEL_NAME_CLEAN) 
 
+#Create new dataset with only top 10 values from sum_CP_NAME from cpsums_acres
 cpsums_acres_top10 <- cpsums_acres %>%
  slice_max(sum_CP_NAME, n=10) %>%
   arrange(desc(sum_CP_NAME))
+  
 
-cpsums_acres_top10
+# Create new dataset with only top 10 values from sum_CP_NAME from cpsums_acres
+cpsums_acres_top10 <- cpsums_acres_top10[1:10,]
 
 ```
 
 
 #### Basic Plot
 ```{r}
-basic_plot <- ggplot(cpsums_acres, aes(x = as.factor(CP_NAME), y = sum_CP_NAME)) +
+basic_plot <- ggplot(cpsums_acres_top10, aes(x = as.factor(CP_NAME), y = sum_CP_NAME)) +
   geom_bar(stat = "identity", fill=alpha("blue",0.3)) +
   ylim(-2000,38000) +
   theme_minimal() + 
@@ -63,6 +72,54 @@ basic_plot
 ```
 
 
+
+```{r}
+
+copied_plt <- ggplot(cpsums_acres_top10) +
+  # Make custom panel grid
+  geom_hline(
+    aes(yintercept = y), 
+    data.frame(y = c(0:3) * 10000),
+    color = "lightgrey"
+  ) + 
+  # Add bars to represent the cumulative track lengths
+  # str_wrap(region, 5) wraps the text so each line has at most 5 characters
+  # (but it doesn't break long words!)
+  geom_col(
+    aes(
+      x = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
+      y = sum_CP_NAME,
+      fill = IRA
+    ),
+    position = "dodge2",
+    show.legend = TRUE,
+    alpha = .9
+  ) +
+  
+
+  # Lollipop shaft for mean gain per region
+  geom_segment(
+    aes(
+      x = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
+      y = 0,
+      xend = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
+      yend = 10000
+    ),
+    linetype = "dashed",
+    color = "gray12"
+  ) + 
+  
+  # Make it circular!
+  coord_polar()
+
+copied_plt
+```
+
+## Notes on Next Steps
+1. Get the sizes right, Remove unnecessary labels 
+2. Calculate % of total coverage for each CP (using totals from cpsums_acres) (would be nice if this was a column)
+3. ADD to cpsums_acres_top10 a line of data for "All Other CPs" 
+https://r-graph-gallery.com/web-circular-barplot-with-R-and-ggplot2.html
 
 
 ####
