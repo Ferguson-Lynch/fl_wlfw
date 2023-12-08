@@ -1,0 +1,102 @@
+---
+title: "AquaticsFramework_ConservationGoals"
+output: html_document
+date: "2023-12-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+#### Load Libraries
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+```
+
+#### Load Data + Summarize
+```{r}
+# load csv file
+df <- read.csv("transformed_data.csv", header = TRUE, stringsAsFactors = FALSE)
+
+# Add IRA Column
+df <- df %>%
+  mutate(IRA = grepl("(IRA)", CP_NAME, ignore.case = TRUE))
+
+
+# Create New Dataframe summarizing the data
+cpsums <- df %>%
+  group_by(CP_NAME,UNIT, IRA) %>%
+  summarize(sum_CP_NAME = sum(VALUE, na.rm = TRUE)) 
+
+cpsums_acres <- cpsums %>%
+  filter(UNIT == "Ac") %>%
+  select(CP_NAME, sum_CP_NAME, UNIT, IRA) 
+
+cpsums_acres_top10 <- cpsums_acres %>%
+ slice_max(sum_CP_NAME, n=10) %>%
+  arrange(desc(sum_CP_NAME))
+
+cpsums_acres_top10
+
+```
+
+
+#### Basic Plot
+```{r}
+basic_plot <- ggplot(cpsums_acres, aes(x = as.factor(CP_NAME), y = sum_CP_NAME)) +
+  geom_bar(stat = "identity", fill=alpha("blue",0.3)) +
+  ylim(-2000,38000) +
+  theme_minimal() + 
+  theme( 
+     axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(rep(-2,4), "cm")     # This remove unnecessary margin around plot
+  ) +
+  coord_polar(start = 0)
+    
+basic_plot
+```
+
+
+
+
+####
+```{r}
+# Set a number of 'empty bar' to add at the end of each group
+empty_bar <- 4
+to_add <- data.frame( matrix(NA, empty_bar*nlevels(data$group), ncol(data)) )
+colnames(to_add) <- colnames(data)
+to_add$group <- rep(levels(data$group), each=empty_bar)
+data <- rbind(data, to_add)
+data <- data %>% arrange(group)
+data$id <- seq(1, nrow(data))
+
+
+
+```  
+
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
