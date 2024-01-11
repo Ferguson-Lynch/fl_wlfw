@@ -25,38 +25,73 @@ df <- read.csv("transformed_data.csv", header = TRUE, stringsAsFactors = FALSE)
 
 # Add IRA Column
 df <- df %>%
-  mutate(IRA = grepl("(IRA)", CP_NAME, ignore.case = TRUE)) %>%
-  #Create New Column from CP_NAME column that parses out the String between | and |
-  mutate(LABEL_NAME = str_extract(CP_NAME, "(?<=\\|)(.*?)(?=\\|)")) %>%
-   mutate(LABEL_NAME_CLEAN =ifelse(str_detect(LABEL_NAME, "(IRA)"), str_replace(LABEL_NAME, "(IRA)", " "), LABEL_NAME)) 
-  # Remove all parentheses from the strings column LABEL_NAME_CLEAN 
-  df$LABEL_NAME_CLEAN <- gsub("\\(|\\)", "", df$LABEL_NAME_CLEAN)
+  mutate(IRA = grepl("(IRA)", CP_NAME, ignore.case = TRUE))
+
+# Clean up name column
+df <- df %>%
+  mutate(CP_NAME_1 = str_extract(CP_NAME, "(?<=\\|)(.*?)(?=\\|)")) %>%
+  mutate(LABEL_NAME = str_extract(CP_NAME_1, "^[^(]*"))
+# 
+#   mutate(LABEL_NAME_CLEAN =ifelse(str_detect(LABEL_NAME, "(IRA)"), str_replace(LABEL_NAME, "(IRA)", ""), LABEL_NAME))
+# 
+#   # Remove all parentheses from the strings column LABEL_NAME_CLEAN 
+#   df$LABEL_NAME_CLEAN <- gsub("\\(|\\)", "", df$LABEL_NAME_CLEAN)
 
 
-# Create New Dataframe summarizing the data
-cpsums <- df %>%
-  group_by(CP_NAME,UNIT, IRA,LABEL_NAME_CLEAN) %>%
-  summarize(sum_CP_NAME = sum(VALUE, na.rm = TRUE)) 
+# Shorten long words in the name
+replacements <- list(
+  "Management"  = "Mgmt",
+  "Improvement" = "Imprvmt",
+  "Development" = "Dvlpmt",
+  "System" = "Systm",
+  "Treatment" = "Trtmt"
+)
 
-cpsums_acres <- cpsums %>%
-  filter(UNIT == "Ac") %>%
-  select(CP_NAME, sum_CP_NAME, UNIT, IRA,LABEL_NAME_CLEAN) 
+# Function to replace words in a given string
+replace_words <- function(text) {
+   for (word in names(replacements)) {
+    text <- str_replace_all(text, fixed(word), replacements[[word]])
+   }
+  text
+}
 
-#Create new dataset with only top 10 values from sum_CP_NAME from cpsums_acres
-cpsums_acres_top10 <- cpsums_acres %>%
- slice_max(sum_CP_NAME, n=10) %>%
-  arrange(desc(sum_CP_NAME))
+# Run the shortening function to the label name column
+df <- df %>%
+  mutate(SHRT_LABEL_NAME = str_trim(map_chr(LABEL_NAME, replace_words)))
   
 
-# Create new dataset with only top 10 values from sum_CP_NAME from cpsums_acres
-cpsums_acres_top10 <- cpsums_acres_top10[1:10,]
+
+# Create New Dataframe summarizing the data (Residue and Till Management were collapsed into one category (no till / reduced till))
+cpsums <- df %>%
+  group_by(SHRT_LABEL_NAME, UNIT, IRA) %>%
+  summarize(sum_value = sum(VALUE, na.rm = TRUE)) 
+
+# Create new dataframe with just acres
+cpsums_acres <- cpsums %>%
+  filter(UNIT == "Ac") %>%
+  select(SHRT_LABEL_NAME, sum_value, UNIT, IRA) %>%
+  ungroup() %>%
+  mutate(pct = sum_value / sum(cpsums_acres$sum_value)*100)
+
+#Create new dataset with only top 10 values cpsums_acres
+cpsums_acres_top10 <- cpsums_acres %>%
+  slice_max(sum_value, n=10) %>%
+  arrange(desc(sum_value))
+
+#Create a new dataset with a new row of all other CPs in acres
+cpsums_acres_top11 <- cpsums_acres_top10 %>%
+  add_row(SHRT_LABEL_NAME = "All others",
+          sum_value = sum(cpsums_acres$sum_value) - sum(cpsums_acres_top10$sum_value),
+          UNIT = "Ac",
+          IRA = FALSE,
+          pct = (sum(cpsums_acres$sum_value)-sum(cpsums_acres_top10$sum_value)) / sum(cpsums_acres$sum_value) *100)
 
 ```
 
 
 #### Basic Plot
 ```{r}
-basic_plot <- ggplot(cpsums_acres_top10, aes(x = as.factor(CP_NAME), y = sum_CP_NAME)) +
+basic_plot <- ggplot(cpsums_acres_top10, aes(x = as.factor(SHRT_LABEL_NAME), y = sum_value)) +
   geom_bar(stat = "identity", fill=alpha("blue",0.3)) +
   ylim(-2000,38000) +
   theme_minimal() + 
@@ -75,7 +110,7 @@ basic_plot
 
 ```{r}
 
-copied_plt <- ggplot(cpsums_acres_top10) +
+copied_plt <- ggplot(cpsums_acres_top11) +
   # Make custom panel grid
   geom_hline(
     aes(yintercept = y), 
@@ -87,8 +122,8 @@ copied_plt <- ggplot(cpsums_acres_top10) +
   # (but it doesn't break long words!)
   geom_col(
     aes(
-      x = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
-      y = sum_CP_NAME,
+      x = str_wrap(SHRT_LABEL_NAME, 5),
+      y = sum_value,
       fill = IRA
     ),
     position = "dodge2",
@@ -96,21 +131,22 @@ copied_plt <- ggplot(cpsums_acres_top10) +
     alpha = .9
   ) +
   
-
-  # Lollipop shaft for mean gain per region
-  geom_segment(
-    aes(
-      x = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
-      y = 0,
-      xend = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
-      yend = 10000
-    ),
-    linetype = "dashed",
-    color = "gray12"
-  ) + 
+# 
+#   # Lollipop shaft for mean gain per region
+#   geom_segment(
+#     aes(
+#       x = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
+#       y = 0,
+#       xend = reorder(str_wrap(LABEL_NAME_CLEAN, 5), sum_CP_NAME),
+#       yend = 10000
+#     ),
+#     linetype = "dashed",
+#     color = "gray12"
+#   ) + 
   
   # Make it circular!
-  coord_polar()
+  coord_polar()+
+  theme_minimal()
 
 copied_plt
 ```
@@ -137,23 +173,3 @@ data$id <- seq(1, nrow(data))
 
 ```  
 
-
-
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
