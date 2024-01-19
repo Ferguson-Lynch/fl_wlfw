@@ -60,7 +60,6 @@ df <- df %>%
   mutate(SHRT_LABEL_NAME = str_trim(map_chr(LABEL_NAME, replace_words)))
   
 
-
 # Create New Dataframe summarizing the data (Residue and Till Management were collapsed into one category (no till / reduced till))
 cpsums <- df %>%
   group_by(SHRT_LABEL_NAME, UNIT, IRA) %>%
@@ -69,7 +68,9 @@ cpsums <- df %>%
 # Create new dataframe with just acres
 cpsums_acres <- cpsums %>%
   filter(UNIT == "Ac") %>%
-  select(SHRT_LABEL_NAME, sum_value, UNIT, IRA) %>%
+  select(SHRT_LABEL_NAME, sum_value, UNIT, IRA)
+
+cpsums_acres <- cpsums_acres %>%
   ungroup() %>%
   mutate(pct = sum_value / sum(cpsums_acres$sum_value)*100)
 
@@ -91,7 +92,7 @@ cpsums_acres_top11 <- cpsums_acres_top10 %>%
 
 #### Basic Plot
 ```{r}
-basic_plot <- ggplot(cpsums_acres_top10, aes(x = as.factor(SHRT_LABEL_NAME), y = sum_value)) +
+basic_plot <- ggplot(cpsums_acres_top11, aes(x = as.factor(SHRT_LABEL_NAME), y = sum_value)) +
   geom_bar(stat = "identity", fill=alpha("blue",0.3)) +
   ylim(-2000,38000) +
   theme_minimal() + 
@@ -146,7 +147,26 @@ copied_plt <- ggplot(cpsums_acres_top11) +
   
   # Make it circular!
   coord_polar()+
-  theme_minimal()
+  theme_minimal() +
+  scale_y_continuous(
+    limits = c(-12000, 45000),
+    expand = c(0, 0),
+    breaks = c(0, 10000, 20000, 30000, 40000, 45000)
+  )+
+  geom_text(aes(x = str_wrap(SHRT_LABEL_NAME, 5),
+      y = sum_value,label=paste(round(pct,2),"%")), 
+      nudge_y = 1, size = 3,color = "gray12")+
+  theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    # Move the legend to the bottom
+    legend.position = "bottom",
+    text = element_text(color = "gray12", size=10.5),
+    panel.grid = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
 
 copied_plt
 ```
