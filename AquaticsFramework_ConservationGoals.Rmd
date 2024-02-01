@@ -179,7 +179,7 @@ https://r-graph-gallery.com/web-circular-barplot-with-R-and-ggplot2.html
 
 
 ####
-```{r}
+```{r eval=FALSE}
 # Set a number of 'empty bar' to add at the end of each group
 empty_bar <- 4
 to_add <- data.frame( matrix(NA, empty_bar*nlevels(data$group), ncol(data)) )
@@ -191,5 +191,5 @@ data$id <- seq(1, nrow(data))
 
 
 
-```  
+```
 
