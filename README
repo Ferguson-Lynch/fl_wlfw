@@ -1,0 +1,2 @@
+In order to view the plotly output in jupyter notebook, install:
+pip install "plotly>=5" "ipywidgets>=7.6"
