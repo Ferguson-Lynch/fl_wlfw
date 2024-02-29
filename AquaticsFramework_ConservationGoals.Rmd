@@ -2,6 +2,8 @@
 title: "AquaticsFramework_ConservationGoals"
 output: html_document
 date: "2023-12-05"
+
+Developed by Sage and Jonathan
 ---
 
 ```{r setup, include=FALSE}
@@ -56,7 +58,7 @@ replace_words <- function(text) {
 }
 
 # Run the shortening function to the label name column
-df <- df %>%
+  df <- df %>%
   mutate(SHRT_LABEL_NAME = str_trim(map_chr(LABEL_NAME, replace_words)))
   
 
