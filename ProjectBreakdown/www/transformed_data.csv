@@ -1,0 +1,781 @@
+CP_NAME,UNIT,STATE,VALUE
+CP #314 | Brush Management  | (Acres),Ac,Maryland,750
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Maryland,600
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Maryland,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Maryland,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Maryland,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Maryland,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Maryland,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Maryland,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Maryland,0
+CP #356 | Dike and Levee  | (Feet),Ft,Maryland,0
+CP #362 | Diversion  | (Feet),Ft,Maryland,0
+CP #378 | Pond  | (Num.),Num,Maryland,0
+CP #382 | Fence  | (Feet),Ft,Maryland,0
+CP #386 | Field Border (IRA) | (Acres),Ac,Maryland,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Maryland,100
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Maryland,75
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Maryland,50
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Maryland,50
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Maryland,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Maryland,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Maryland,0
+CP #441 | Micro-irrigation | (Acres),Ac,Maryland,0
+CP #442 | Sprinkler system  | (Acres),Ac,Maryland,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Maryland,0
+CP #472 | Access Control  | (Acres),Ac,Maryland,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Maryland,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Maryland,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Maryland,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Maryland,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Maryland,0
+CP #533 | Pumping Plant  | (Num.),Num,Maryland,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Maryland,0
+CP #554 | Drainage Water Management | (Acres),Ac,Maryland,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Maryland,0
+CP #574 | Spring Development  | (Num.),Num,Maryland,0
+CP #578 | Stream Crossing  | (Num.),Num,Maryland,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Maryland,125
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Maryland,0
+CP #587 | Structure for Water Control  | (Num.),Num,Maryland,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Maryland,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Maryland,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Maryland,0
+CP #614 | Watering Facility  | (Num.),Num,Maryland,0
+CP #642 | Water Well  | (Num.),Num,Maryland,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Maryland,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Maryland,50
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Maryland,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Maryland,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Maryland,25
+CP #658 | Wetland Creation  | (Acres),Ac,Maryland,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Maryland,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Maryland,0
+CP #314 | Brush Management  | (Acres),Ac,South Carolina,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,South Carolina,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,South Carolina,805
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,South Carolina,3514
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,South Carolina,9884
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,South Carolina,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,South Carolina,22357
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,South Carolina,1983
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,South Carolina,10668
+CP #356 | Dike and Levee  | (Feet),Ft,South Carolina,0
+CP #362 | Diversion  | (Feet),Ft,South Carolina,0
+CP #378 | Pond  | (Num.),Num,South Carolina,0
+CP #382 | Fence  | (Feet),Ft,South Carolina,0
+CP #386 | Field Border (IRA) | (Acres),Ac,South Carolina,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,South Carolina,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,South Carolina,36
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,South Carolina,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,South Carolina,45
+CP #410 | Grade Stabilization Structure  | (Num.),Num,South Carolina,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,South Carolina,23
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,South Carolina,242
+CP #441 | Micro-irrigation | (Acres),Ac,South Carolina,0
+CP #442 | Sprinkler system  | (Acres),Ac,South Carolina,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,South Carolina,0
+CP #472 | Access Control  | (Acres),Ac,South Carolina,0
+CP #484 | Mulching (IRA) | (Acres),Ac,South Carolina,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,South Carolina,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,South Carolina,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,South Carolina,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,South Carolina,0
+CP #533 | Pumping Plant  | (Num.),Num,South Carolina,0
+CP #550 | Range planting (IRA) | (Acres),Ac,South Carolina,0
+CP #554 | Drainage Water Management | (Acres),Ac,South Carolina,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,South Carolina,0
+CP #574 | Spring Development  | (Num.),Num,South Carolina,0
+CP #578 | Stream Crossing  | (Num.),Num,South Carolina,105
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,South Carolina,17662
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,South Carolina,0
+CP #587 | Structure for Water Control  | (Num.),Num,South Carolina,54
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,South Carolina,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,South Carolina,637
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,South Carolina,21561
+CP #614 | Watering Facility  | (Num.),Num,South Carolina,0
+CP #642 | Water Well  | (Num.),Num,South Carolina,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,South Carolina,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,South Carolina,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,South Carolina,0
+CP #649 | Structures for Wildlife  | (Num.),Num,South Carolina,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,South Carolina,0
+CP #658 | Wetland Creation  | (Acres),Ac,South Carolina,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,South Carolina,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,South Carolina,0
+CP #314 | Brush Management  | (Acres),Ac,West Virginia,143
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,West Virginia,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,West Virginia,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,West Virginia,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,West Virginia,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,West Virginia,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,West Virginia,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,West Virginia,8
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,West Virginia,0
+CP #356 | Dike and Levee  | (Feet),Ft,West Virginia,0
+CP #362 | Diversion  | (Feet),Ft,West Virginia,0
+CP #378 | Pond  | (Num.),Num,West Virginia,0
+CP #382 | Fence  | (Feet),Ft,West Virginia,169557
+CP #386 | Field Border (IRA) | (Acres),Ac,West Virginia,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,West Virginia,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,West Virginia,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,West Virginia,20
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,West Virginia,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,West Virginia,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,West Virginia,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,West Virginia,0
+CP #441 | Micro-irrigation | (Acres),Ac,West Virginia,0
+CP #442 | Sprinkler system  | (Acres),Ac,West Virginia,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,West Virginia,0
+CP #472 | Access Control  | (Acres),Ac,West Virginia,328
+CP #484 | Mulching (IRA) | (Acres),Ac,West Virginia,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,West Virginia,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,West Virginia,91
+CP #516 | Livestock Pipeline  | (Feet),Ft,West Virginia,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,West Virginia,2229
+CP #533 | Pumping Plant  | (Num.),Num,West Virginia,0
+CP #550 | Range planting (IRA) | (Acres),Ac,West Virginia,0
+CP #554 | Drainage Water Management | (Acres),Ac,West Virginia,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,West Virginia,59622
+CP #574 | Spring Development  | (Num.),Num,West Virginia,93
+CP #578 | Stream Crossing  | (Num.),Num,West Virginia,12
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,West Virginia,53396
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,West Virginia,1800
+CP #587 | Structure for Water Control  | (Num.),Num,West Virginia,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,West Virginia,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,West Virginia,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,West Virginia,20
+CP #614 | Watering Facility  | (Num.),Num,West Virginia,138
+CP #642 | Water Well  | (Num.),Num,West Virginia,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,West Virginia,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,West Virginia,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,West Virginia,0
+CP #649 | Structures for Wildlife  | (Num.),Num,West Virginia,395
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,West Virginia,0
+CP #658 | Wetland Creation  | (Acres),Ac,West Virginia,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,West Virginia,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,West Virginia,0
+CP #314 | Brush Management  | (Acres),Ac,Virginia,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Virginia,500
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Virginia,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Virginia,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Virginia,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Virginia,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Virginia,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Virginia,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Virginia,0
+CP #356 | Dike and Levee  | (Feet),Ft,Virginia,750
+CP #362 | Diversion  | (Feet),Ft,Virginia,0
+CP #378 | Pond  | (Num.),Num,Virginia,0
+CP #382 | Fence  | (Feet),Ft,Virginia,82500
+CP #386 | Field Border (IRA) | (Acres),Ac,Virginia,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Virginia,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Virginia,100
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Virginia,75
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Virginia,7
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Virginia,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Virginia,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Virginia,225
+CP #441 | Micro-irrigation | (Acres),Ac,Virginia,0
+CP #442 | Sprinkler system  | (Acres),Ac,Virginia,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Virginia,0
+CP #472 | Access Control  | (Acres),Ac,Virginia,1000
+CP #484 | Mulching (IRA) | (Acres),Ac,Virginia,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Virginia,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Virginia,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Virginia,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Virginia,0
+CP #533 | Pumping Plant  | (Num.),Num,Virginia,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Virginia,0
+CP #554 | Drainage Water Management | (Acres),Ac,Virginia,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Virginia,0
+CP #574 | Spring Development  | (Num.),Num,Virginia,0
+CP #578 | Stream Crossing  | (Num.),Num,Virginia,25
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Virginia,700
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Virginia,0
+CP #587 | Structure for Water Control  | (Num.),Num,Virginia,30
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Virginia,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Virginia,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Virginia,0
+CP #614 | Watering Facility  | (Num.),Num,Virginia,375
+CP #642 | Water Well  | (Num.),Num,Virginia,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Virginia,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Virginia,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Virginia,21
+CP #649 | Structures for Wildlife  | (Num.),Num,Virginia,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Virginia,1100
+CP #658 | Wetland Creation  | (Acres),Ac,Virginia,75
+CP #659 | Wetland Enhancement  | (Acres),Ac,Virginia,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Virginia,0
+CP #314 | Brush Management  | (Acres),Ac,Texas,22000
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Texas,5200
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Texas,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Texas,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Texas,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Texas,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Texas,5200
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Texas,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Texas,0
+CP #356 | Dike and Levee  | (Feet),Ft,Texas,0
+CP #362 | Diversion  | (Feet),Ft,Texas,0
+CP #378 | Pond  | (Num.),Num,Texas,0
+CP #382 | Fence  | (Feet),Ft,Texas,270000
+CP #386 | Field Border (IRA) | (Acres),Ac,Texas,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Texas,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Texas,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Texas,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Texas,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Texas,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Texas,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Texas,2000
+CP #441 | Micro-irrigation | (Acres),Ac,Texas,500
+CP #442 | Sprinkler system  | (Acres),Ac,Texas,1800
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Texas,0
+CP #472 | Access Control  | (Acres),Ac,Texas,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Texas,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Texas,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Texas,2000
+CP #516 | Livestock Pipeline  | (Feet),Ft,Texas,40000
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Texas,21000
+CP #533 | Pumping Plant  | (Num.),Num,Texas,40
+CP #550 | Range planting (IRA) | (Acres),Ac,Texas,2000
+CP #554 | Drainage Water Management | (Acres),Ac,Texas,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Texas,0
+CP #574 | Spring Development  | (Num.),Num,Texas,0
+CP #578 | Stream Crossing  | (Num.),Num,Texas,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Texas,0
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Texas,0
+CP #587 | Structure for Water Control  | (Num.),Num,Texas,100
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Texas,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Texas,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Texas,0
+CP #614 | Watering Facility  | (Num.),Num,Texas,600
+CP #642 | Water Well  | (Num.),Num,Texas,40
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Texas,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Texas,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Texas,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Texas,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Texas,0
+CP #658 | Wetland Creation  | (Acres),Ac,Texas,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Texas,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Texas,0
+CP #314 | Brush Management  | (Acres),Ac,Mississippi,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Mississippi,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Mississippi,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Mississippi,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Mississippi,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Mississippi,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Mississippi,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Mississippi,90
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Mississippi,0
+CP #356 | Dike and Levee  | (Feet),Ft,Mississippi,0
+CP #362 | Diversion  | (Feet),Ft,Mississippi,5000
+CP #378 | Pond  | (Num.),Num,Mississippi,20
+CP #382 | Fence  | (Feet),Ft,Mississippi,44000
+CP #386 | Field Border (IRA) | (Acres),Ac,Mississippi,50
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Mississippi,50
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Mississippi,90
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Mississippi,30
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Mississippi,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Mississippi,220
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Mississippi,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Mississippi,0
+CP #441 | Micro-irrigation | (Acres),Ac,Mississippi,0
+CP #442 | Sprinkler system  | (Acres),Ac,Mississippi,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Mississippi,0
+CP #472 | Access Control  | (Acres),Ac,Mississippi,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Mississippi,90
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Mississippi,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Mississippi,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Mississippi,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Mississippi,0
+CP #533 | Pumping Plant  | (Num.),Num,Mississippi,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Mississippi,0
+CP #554 | Drainage Water Management | (Acres),Ac,Mississippi,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Mississippi,6750
+CP #574 | Spring Development  | (Num.),Num,Mississippi,0
+CP #578 | Stream Crossing  | (Num.),Num,Mississippi,30
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Mississippi,5000
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Mississippi,0
+CP #587 | Structure for Water Control  | (Num.),Num,Mississippi,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Mississippi,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Mississippi,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Mississippi,0
+CP #614 | Watering Facility  | (Num.),Num,Mississippi,0
+CP #642 | Water Well  | (Num.),Num,Mississippi,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Mississippi,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Mississippi,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Mississippi,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Mississippi,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Mississippi,0
+CP #658 | Wetland Creation  | (Acres),Ac,Mississippi,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Mississippi,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Mississippi,0
+CP #314 | Brush Management  | (Acres),Ac,Georgia,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Georgia,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Georgia,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Georgia,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Georgia,2300
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Georgia,800
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Georgia,2300
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Georgia,100
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Georgia,0
+CP #356 | Dike and Levee  | (Feet),Ft,Georgia,0
+CP #362 | Diversion  | (Feet),Ft,Georgia,0
+CP #378 | Pond  | (Num.),Num,Georgia,0
+CP #382 | Fence  | (Feet),Ft,Georgia,7500
+CP #386 | Field Border (IRA) | (Acres),Ac,Georgia,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Georgia,30
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Georgia,50
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Georgia,20
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Georgia,4
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Georgia,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Georgia,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Georgia,50
+CP #441 | Micro-irrigation | (Acres),Ac,Georgia,0
+CP #442 | Sprinkler system  | (Acres),Ac,Georgia,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Georgia,0
+CP #472 | Access Control  | (Acres),Ac,Georgia,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Georgia,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Georgia,2000
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Georgia,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Georgia,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Georgia,0
+CP #533 | Pumping Plant  | (Num.),Num,Georgia,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Georgia,0
+CP #554 | Drainage Water Management | (Acres),Ac,Georgia,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Georgia,6000
+CP #574 | Spring Development  | (Num.),Num,Georgia,0
+CP #578 | Stream Crossing  | (Num.),Num,Georgia,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Georgia,1000
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Georgia,0
+CP #587 | Structure for Water Control  | (Num.),Num,Georgia,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Georgia,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Georgia,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Georgia,2000
+CP #614 | Watering Facility  | (Num.),Num,Georgia,40
+CP #642 | Water Well  | (Num.),Num,Georgia,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Georgia,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Georgia,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Georgia,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Georgia,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Georgia,0
+CP #658 | Wetland Creation  | (Acres),Ac,Georgia,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Georgia,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Georgia,0
+CP #314 | Brush Management  | (Acres),Ac,Florida,8000
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Florida,8000
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Florida,900
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Florida,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Florida,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Florida,4000
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Florida,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Florida,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Florida,0
+CP #356 | Dike and Levee  | (Feet),Ft,Florida,0
+CP #362 | Diversion  | (Feet),Ft,Florida,0
+CP #378 | Pond  | (Num.),Num,Florida,0
+CP #382 | Fence  | (Feet),Ft,Florida,0
+CP #386 | Field Border (IRA) | (Acres),Ac,Florida,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Florida,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Florida,420
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Florida,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Florida,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Florida,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Florida,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Florida,0
+CP #441 | Micro-irrigation | (Acres),Ac,Florida,0
+CP #442 | Sprinkler system  | (Acres),Ac,Florida,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Florida,0
+CP #472 | Access Control  | (Acres),Ac,Florida,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Florida,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Florida,8000
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Florida,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Florida,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Florida,12000
+CP #533 | Pumping Plant  | (Num.),Num,Florida,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Florida,0
+CP #554 | Drainage Water Management | (Acres),Ac,Florida,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Florida,0
+CP #574 | Spring Development  | (Num.),Num,Florida,0
+CP #578 | Stream Crossing  | (Num.),Num,Florida,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Florida,4000
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Florida,0
+CP #587 | Structure for Water Control  | (Num.),Num,Florida,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Florida,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Florida,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Florida,8000
+CP #614 | Watering Facility  | (Num.),Num,Florida,0
+CP #642 | Water Well  | (Num.),Num,Florida,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Florida,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Florida,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Florida,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Florida,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Florida,0
+CP #658 | Wetland Creation  | (Acres),Ac,Florida,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Florida,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Florida,8000
+CP #314 | Brush Management  | (Acres),Ac,Delaware,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Delaware,4700
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Delaware,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Delaware,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Delaware,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Delaware,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Delaware,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Delaware,30
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Delaware,0
+CP #356 | Dike and Levee  | (Feet),Ft,Delaware,30000
+CP #362 | Diversion  | (Feet),Ft,Delaware,0
+CP #378 | Pond  | (Num.),Num,Delaware,3
+CP #382 | Fence  | (Feet),Ft,Delaware,0
+CP #386 | Field Border (IRA) | (Acres),Ac,Delaware,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Delaware,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Delaware,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Delaware,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Delaware,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Delaware,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Delaware,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Delaware,0
+CP #441 | Micro-irrigation | (Acres),Ac,Delaware,0
+CP #442 | Sprinkler system  | (Acres),Ac,Delaware,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Delaware,3000
+CP #472 | Access Control  | (Acres),Ac,Delaware,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Delaware,30
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Delaware,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Delaware,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Delaware,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Delaware,0
+CP #533 | Pumping Plant  | (Num.),Num,Delaware,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Delaware,0
+CP #554 | Drainage Water Management | (Acres),Ac,Delaware,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Delaware,0
+CP #574 | Spring Development  | (Num.),Num,Delaware,0
+CP #578 | Stream Crossing  | (Num.),Num,Delaware,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Delaware,0
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Delaware,0
+CP #587 | Structure for Water Control  | (Num.),Num,Delaware,30
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Delaware,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Delaware,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Delaware,0
+CP #614 | Watering Facility  | (Num.),Num,Delaware,0
+CP #642 | Water Well  | (Num.),Num,Delaware,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Delaware,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Delaware,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Delaware,2
+CP #649 | Structures for Wildlife  | (Num.),Num,Delaware,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Delaware,3
+CP #658 | Wetland Creation  | (Acres),Ac,Delaware,2
+CP #659 | Wetland Enhancement  | (Acres),Ac,Delaware,2
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Delaware,0
+CP #314 | Brush Management  | (Acres),Ac,Tennessee,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Tennessee,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Tennessee,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Tennessee,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Tennessee,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Tennessee,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Tennessee,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Tennessee,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Tennessee,0
+CP #356 | Dike and Levee  | (Feet),Ft,Tennessee,0
+CP #362 | Diversion  | (Feet),Ft,Tennessee,0
+CP #378 | Pond  | (Num.),Num,Tennessee,0
+CP #382 | Fence  | (Feet),Ft,Tennessee,193000
+CP #386 | Field Border (IRA) | (Acres),Ac,Tennessee,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Tennessee,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Tennessee,250
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Tennessee,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Tennessee,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Tennessee,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Tennessee,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Tennessee,0
+CP #441 | Micro-irrigation | (Acres),Ac,Tennessee,0
+CP #442 | Sprinkler system  | (Acres),Ac,Tennessee,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Tennessee,0
+CP #472 | Access Control  | (Acres),Ac,Tennessee,190
+CP #484 | Mulching (IRA) | (Acres),Ac,Tennessee,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Tennessee,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Tennessee,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Tennessee,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Tennessee,0
+CP #533 | Pumping Plant  | (Num.),Num,Tennessee,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Tennessee,0
+CP #554 | Drainage Water Management | (Acres),Ac,Tennessee,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Tennessee,0
+CP #574 | Spring Development  | (Num.),Num,Tennessee,0
+CP #578 | Stream Crossing  | (Num.),Num,Tennessee,70
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Tennessee,40000
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Tennessee,0
+CP #587 | Structure for Water Control  | (Num.),Num,Tennessee,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Tennessee,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Tennessee,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Tennessee,0
+CP #614 | Watering Facility  | (Num.),Num,Tennessee,0
+CP #642 | Water Well  | (Num.),Num,Tennessee,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Tennessee,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Tennessee,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Tennessee,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Tennessee,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Tennessee,0
+CP #658 | Wetland Creation  | (Acres),Ac,Tennessee,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Tennessee,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Tennessee,0
+CP #314 | Brush Management  | (Acres),Ac,North Carolina,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,North Carolina,150
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,North Carolina,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,North Carolina,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,North Carolina,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,North Carolina,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,North Carolina,945
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,North Carolina,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,North Carolina,0
+CP #356 | Dike and Levee  | (Feet),Ft,North Carolina,0
+CP #362 | Diversion  | (Feet),Ft,North Carolina,0
+CP #378 | Pond  | (Num.),Num,North Carolina,0
+CP #382 | Fence  | (Feet),Ft,North Carolina,0
+CP #386 | Field Border (IRA) | (Acres),Ac,North Carolina,55
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,North Carolina,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,North Carolina,14
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,North Carolina,14
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,North Carolina,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,North Carolina,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,North Carolina,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,North Carolina,32
+CP #441 | Micro-irrigation | (Acres),Ac,North Carolina,0
+CP #442 | Sprinkler system  | (Acres),Ac,North Carolina,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,North Carolina,0
+CP #472 | Access Control  | (Acres),Ac,North Carolina,0
+CP #484 | Mulching (IRA) | (Acres),Ac,North Carolina,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,North Carolina,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,North Carolina,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,North Carolina,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,North Carolina,115
+CP #533 | Pumping Plant  | (Num.),Num,North Carolina,0
+CP #550 | Range planting (IRA) | (Acres),Ac,North Carolina,0
+CP #554 | Drainage Water Management | (Acres),Ac,North Carolina,200
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,North Carolina,0
+CP #574 | Spring Development  | (Num.),Num,North Carolina,0
+CP #578 | Stream Crossing  | (Num.),Num,North Carolina,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,North Carolina,7000
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,North Carolina,0
+CP #587 | Structure for Water Control  | (Num.),Num,North Carolina,32
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,North Carolina,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,North Carolina,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,North Carolina,0
+CP #614 | Watering Facility  | (Num.),Num,North Carolina,0
+CP #642 | Water Well  | (Num.),Num,North Carolina,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,North Carolina,12
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,North Carolina,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,North Carolina,0
+CP #649 | Structures for Wildlife  | (Num.),Num,North Carolina,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,North Carolina,0
+CP #658 | Wetland Creation  | (Acres),Ac,North Carolina,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,North Carolina,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,North Carolina,450
+CP #314 | Brush Management  | (Acres),Ac,New Jersey,50
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,New Jersey,50
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,New Jersey,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,New Jersey,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,New Jersey,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,New Jersey,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,New Jersey,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,New Jersey,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,New Jersey,0
+CP #356 | Dike and Levee  | (Feet),Ft,New Jersey,0
+CP #362 | Diversion  | (Feet),Ft,New Jersey,0
+CP #378 | Pond  | (Num.),Num,New Jersey,0
+CP #382 | Fence  | (Feet),Ft,New Jersey,0
+CP #386 | Field Border (IRA) | (Acres),Ac,New Jersey,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,New Jersey,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,New Jersey,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,New Jersey,30
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,New Jersey,10
+CP #410 | Grade Stabilization Structure  | (Num.),Num,New Jersey,5
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,New Jersey,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,New Jersey,10
+CP #441 | Micro-irrigation | (Acres),Ac,New Jersey,0
+CP #442 | Sprinkler system  | (Acres),Ac,New Jersey,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,New Jersey,0
+CP #472 | Access Control  | (Acres),Ac,New Jersey,0
+CP #484 | Mulching (IRA) | (Acres),Ac,New Jersey,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,New Jersey,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,New Jersey,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,New Jersey,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,New Jersey,0
+CP #533 | Pumping Plant  | (Num.),Num,New Jersey,0
+CP #550 | Range planting (IRA) | (Acres),Ac,New Jersey,0
+CP #554 | Drainage Water Management | (Acres),Ac,New Jersey,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,New Jersey,0
+CP #574 | Spring Development  | (Num.),Num,New Jersey,0
+CP #578 | Stream Crossing  | (Num.),Num,New Jersey,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,New Jersey,250
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,New Jersey,0
+CP #587 | Structure for Water Control  | (Num.),Num,New Jersey,5
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,New Jersey,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,New Jersey,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,New Jersey,25
+CP #614 | Watering Facility  | (Num.),Num,New Jersey,0
+CP #642 | Water Well  | (Num.),Num,New Jersey,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,New Jersey,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,New Jersey,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,New Jersey,0
+CP #649 | Structures for Wildlife  | (Num.),Num,New Jersey,25
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,New Jersey,50
+CP #658 | Wetland Creation  | (Acres),Ac,New Jersey,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,New Jersey,75
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,New Jersey,0
+CP #314 | Brush Management  | (Acres),Ac,Alabama,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Alabama,1250
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Alabama,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Alabama,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Alabama,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Alabama,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Alabama,4000
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Alabama,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Alabama,0
+CP #356 | Dike and Levee  | (Feet),Ft,Alabama,0
+CP #362 | Diversion  | (Feet),Ft,Alabama,0
+CP #378 | Pond  | (Num.),Num,Alabama,0
+CP #382 | Fence  | (Feet),Ft,Alabama,100000
+CP #386 | Field Border (IRA) | (Acres),Ac,Alabama,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Alabama,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Alabama,10
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Alabama,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Alabama,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Alabama,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Alabama,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Alabama,0
+CP #441 | Micro-irrigation | (Acres),Ac,Alabama,0
+CP #442 | Sprinkler system  | (Acres),Ac,Alabama,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Alabama,0
+CP #472 | Access Control  | (Acres),Ac,Alabama,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Alabama,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Alabama,1010
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Alabama,250
+CP #516 | Livestock Pipeline  | (Feet),Ft,Alabama,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Alabama,0
+CP #533 | Pumping Plant  | (Num.),Num,Alabama,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Alabama,0
+CP #554 | Drainage Water Management | (Acres),Ac,Alabama,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Alabama,6000
+CP #574 | Spring Development  | (Num.),Num,Alabama,0
+CP #578 | Stream Crossing  | (Num.),Num,Alabama,20
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Alabama,300
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Alabama,0
+CP #587 | Structure for Water Control  | (Num.),Num,Alabama,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Alabama,1000
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Alabama,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Alabama,1000
+CP #614 | Watering Facility  | (Num.),Num,Alabama,0
+CP #642 | Water Well  | (Num.),Num,Alabama,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Alabama,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Alabama,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Alabama,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Alabama,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Alabama,0
+CP #658 | Wetland Creation  | (Acres),Ac,Alabama,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Alabama,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Alabama,0
+CP #314 | Brush Management  | (Acres),Ac,Louisiana,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Louisiana,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Louisiana,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Louisiana,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Louisiana,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Louisiana,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Louisiana,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Louisiana,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Louisiana,0
+CP #356 | Dike and Levee  | (Feet),Ft,Louisiana,0
+CP #362 | Diversion  | (Feet),Ft,Louisiana,0
+CP #378 | Pond  | (Num.),Num,Louisiana,0
+CP #382 | Fence  | (Feet),Ft,Louisiana,0
+CP #386 | Field Border (IRA) | (Acres),Ac,Louisiana,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Louisiana,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Louisiana,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Louisiana,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Louisiana,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Louisiana,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Louisiana,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Louisiana,0
+CP #441 | Micro-irrigation | (Acres),Ac,Louisiana,0
+CP #442 | Sprinkler system  | (Acres),Ac,Louisiana,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Louisiana,0
+CP #472 | Access Control  | (Acres),Ac,Louisiana,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Louisiana,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Louisiana,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Louisiana,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Louisiana,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Louisiana,0
+CP #533 | Pumping Plant  | (Num.),Num,Louisiana,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Louisiana,0
+CP #554 | Drainage Water Management | (Acres),Ac,Louisiana,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Louisiana,0
+CP #574 | Spring Development  | (Num.),Num,Louisiana,0
+CP #578 | Stream Crossing  | (Num.),Num,Louisiana,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Louisiana,0
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Louisiana,0
+CP #587 | Structure for Water Control  | (Num.),Num,Louisiana,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Louisiana,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Louisiana,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Louisiana,0
+CP #614 | Watering Facility  | (Num.),Num,Louisiana,0
+CP #642 | Water Well  | (Num.),Num,Louisiana,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Louisiana,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Louisiana,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Louisiana,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Louisiana,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Louisiana,0
+CP #658 | Wetland Creation  | (Acres),Ac,Louisiana,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Louisiana,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Louisiana,0
+CP #314 | Brush Management  | (Acres),Ac,Arkansas,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Arkansas,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Arkansas,0
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Arkansas,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Arkansas,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Arkansas,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Arkansas,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Arkansas,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Arkansas,0
+CP #356 | Dike and Levee  | (Feet),Ft,Arkansas,0
+CP #362 | Diversion  | (Feet),Ft,Arkansas,0
+CP #378 | Pond  | (Num.),Num,Arkansas,0
+CP #382 | Fence  | (Feet),Ft,Arkansas,0
+CP #386 | Field Border (IRA) | (Acres),Ac,Arkansas,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Arkansas,0
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Arkansas,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Arkansas,0
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Arkansas,0
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Arkansas,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Arkansas,0
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Arkansas,0
+CP #441 | Micro-irrigation | (Acres),Ac,Arkansas,0
+CP #442 | Sprinkler system  | (Acres),Ac,Arkansas,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Arkansas,0
+CP #472 | Access Control  | (Acres),Ac,Arkansas,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Arkansas,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Arkansas,0
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Arkansas,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Arkansas,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Arkansas,0
+CP #533 | Pumping Plant  | (Num.),Num,Arkansas,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Arkansas,0
+CP #554 | Drainage Water Management | (Acres),Ac,Arkansas,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Arkansas,0
+CP #574 | Spring Development  | (Num.),Num,Arkansas,0
+CP #578 | Stream Crossing  | (Num.),Num,Arkansas,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Arkansas,0
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Arkansas,0
+CP #587 | Structure for Water Control  | (Num.),Num,Arkansas,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Arkansas,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Arkansas,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Arkansas,0
+CP #614 | Watering Facility  | (Num.),Num,Arkansas,0
+CP #642 | Water Well  | (Num.),Num,Arkansas,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Arkansas,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Arkansas,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Arkansas,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Arkansas,0
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Arkansas,0
+CP #658 | Wetland Creation  | (Acres),Ac,Arkansas,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Arkansas,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Arkansas,0
