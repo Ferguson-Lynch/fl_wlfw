@@ -40,6 +40,7 @@ ui<- fluidPage(
   
   # set style for fluidRows to only be 40% of the screen height
   tags$style('.rowforty{height:40vh; overflow-y:false;}'),
+  tags$style('h2{font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif}'),
   
   HTML("<div style='background:#248c94;color:#d8c467;padding:5px;margin-bottom:7px;'>
        <h4><b>Title - e.g. Conservation Project Type Breakdowns</b></h4></div>"),
@@ -74,13 +75,13 @@ fluidRow(
         }else{
           highchartOutput("typeBreakdownPlothc", height="100%")
         }
-  ))
+  )),
+
   
-  # bsModal(id="importdatamodal", trigger = NULL, size="large",
-  #        # HTML(""),
-  # 
-  #         #dataTableOutput("uploadTable") 
-  # )
+  bsModal(id="mapmodal", trigger = NULL, size="large",
+         uiOutput("modalheader"),
+          leafletOutput("map")
+  )
   
 ) 
 #))
@@ -113,7 +114,7 @@ server<-function(input, output, session) {
   updateSelectInput(session=session, inputId = "measure", choices=c(unique(projdata$UNIT)[order(unique(projdata$UNIT))]) , selected=category_mapping[1])
   
   
-  
+
   
   
   
@@ -210,7 +211,7 @@ server<-function(input, output, session) {
   #highcharts callbacks
   #click_js <- JS("function(event) {Shiny.onInputChange('stategraph3_click', event.point.x);}") # to make click event
   canvasClickFunction <- JS("function(event) {Shiny.onInputChange('mainPlot_click', event.xAxis[0].value);}") #get some value that changes so that the input changes
-  #barClickFunction<-JS("function(event) {Shiny.onInputChange('mainPlot_click', [this.name, event.point.category]);}")
+  barClickFunction<-JS("function(event) {Shiny.onInputChange('barPlot_click',  event.point.category);}")
   #legendClickFunction <- JS("function(event) {Shiny.onInputChange('legendClicked', this.name);}")
  mouseOverFunc<-JS("function(event) {Shiny.onInputChange('mainPlot_mouseOver', event.point.name);}")
  sliceClickFunc <- JS("function(event) {Shiny.onInputChange('mainPlot_click', event.point.name);}")
@@ -327,7 +328,8 @@ server<-function(input, output, session) {
     hc2 <- highchart() %>%
       hc_add_series( data = daty, hcaes(y = VALUE, x=STATE ), name="Project Type", 
                      type="column", color=colo[1], 
-                     tooltip=list(pointFormat=paste0("{point.VALUE:,.0f} ",input$measure) ) 
+                     tooltip=list(pointFormat=paste0("{point.VALUE:,.0f} ",input$measure) ), 
+                     point=list(events = list( click=barClickFunction))
                      ) %>% 
       hc_xAxis(categories = levels(daty$STATE)) %>%
       hc_yAxis(title=list(text=paste0("Value in ", input$measure), useHTML=TRUE) #labels = list(format = " {value}%"), 
@@ -348,15 +350,17 @@ server<-function(input, output, session) {
     
   })
   
-  
-  
-  
-  
-  ## if they switch unit type, null out bottom plot
-  observeEvent(input$measure, {
-    
-    last_hovered$dattype<-NULL
+  observe({
+    print(input$barPlot_click)
   })
+  
+  
+  
+  # ## if they switch unit type, null out bottom plot
+  # observeEvent(input$measure, {
+  #   
+  #   last_hovered$dattype<-NULL
+  # })
   
   
   
@@ -431,6 +435,67 @@ server<-function(input, output, session) {
   # 
   
   
+  #############################################################
+  ## states shapefile for map
+  
+ ## get state shapefiles streamed from ArcGis open source
+  
+
+  requesturl<-"https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0/query?where=1%3D1&outFields=STATE_NAME&f=geojson"
+  arcpoly<-tryCatch(st_read(requesturl, quiet=TRUE), error=function(e) {NULL})
+  arcpoly<-suppressWarnings(as(arcpoly, "Spatial"))
+
+  
+  
+
+  
+  
+  
+  
+  observeEvent(input$barPlot_click, {
+      req(arcpoly, last_hovered$dattype)
+    
+    daty<-projdata[projdata$type == last_hovered$dattype,]
+    
+    statdat<-arcpoly[tolower(arcpoly$STATE_NAME) %in% tolower(unique(daty$STATE)), ]
+  statdat$value<-daty$VALUE[match(tolower(statdat$STATE_NAME), tolower(daty$STATE))]
+
+  # pal<-colorRampPalette(rev(c("#990000",'#e93e3a','#ed683c','#f3903f','#fdc70c','#fff33b','#0000ff')))
+  # statdat$colo<-pal(20)[as.numeric(cut(statdat$value, breaks=20))]
+  # 
+  numberofcolors<-1000
+  color_palette <-colorRampPalette(rev(c('#e93e3a','#ed683c','#f3903f','#fdc70c','#fff33b','#0000ff')))(numberofcolors)
+  # Map the numeric values to colors
+  scaled_values <- (statdat$value - min(statdat$value)) / diff(range(statdat$value))
+  color_indices <- ceiling(scaled_values * (numberofcolors - 1)) + 1
+  statdat$colo <- color_palette[color_indices]
+  
+  
+  output$modalheader<-renderUI({
+    HTML(paste0("<h2>", last_hovered$dattype ,"</h2>"))
+  })
+  
+  
+output$map<-renderLeaflet({
+  
+  leaflet() %>% 
+    addProviderTiles("CartoDB.Positron", group="Map") %>% 
+    
+    addMouseCoordinates() %>% 
+    addPolygons(data=statdat,
+               label=paste0(statdat$STATE_NAME, " - ", statdat$value, " ", input$measure), 
+                fillColor=statdat$colo, fillOpacity = 0.7, color="black", weight=0.5,
+                group = "States")
+  
+  
+})
+    #leafletProxy("map") %>% clearGroup("States") %>%
+      
+    
+    toggleModal(session=session, modalId = "mapmodal", toggle="open")
+    
+    
+  })
   
   
   
