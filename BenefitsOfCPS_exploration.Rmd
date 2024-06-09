@@ -9,14 +9,37 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
 library(ggplot2)
+library(tidyverse)
+library(viridis)
+library(patchwork)
+library(hrbrthemes)
+library(circlize)
+library(networkD3)
 ```
 
 ## R Markdown
 
 Configuring Docments 
 
-```{r cars}
-summary(cars)
+```{r load}
+# Change this to relative path to csv once it's in the github directory
+data <- read.csv("benefits_of_cps_raw.csv", header = TRUE)
+extract_cp_name <- function(raw_name){
+  return(strsplit(raw_name, "\\|"))
+}
+
+data <- mutate(data, )
+
+
+# Change data to long format (each individual connection is a row)
+data_long <- data %>% 
+     select(!c("Notes", "Network.Diagram")) %>%
+     gather(key = 'key', value = 'value', -CP.Name) %>%
+     filter(value > 0) %>%
+     # Currently, we have two levels of connection, regular and "not mentioned"
+     # Condensing these into 1, to indicate equal connection
+     mutate(value = 1)
+colnames(data_long) <- c("target", "source", "value")
 ```
 
 ## Including Plots
@@ -24,7 +47,22 @@ summary(cars)
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+# From these flows we need to create a node data frame: it lists every entities involved in the flow
+nodes <- data.frame(name=c(as.character(data_long$source), as.character(data_long$target)) %>% unique())
+ 
+# With networkD3, connection must be provided using id, not using real name like in the links dataframe.. So we need to reformat it.
+data_long$IDsource=match(data_long$source, nodes$name)-1 
+data_long$IDtarget=match(data_long$target, nodes$name)-1
+
+# prepare colour scale
+ColourScal ='d3.scaleOrdinal() .range(["#FDE725FF","#B4DE2CFF","#6DCD59FF","#35B779FF","#1F9E89FF","#26828EFF","#31688EFF","#3E4A89FF","#482878FF","#440154FF"])'
+
+# Make the Network
+sankeyNetwork(Links = data_long, Nodes = nodes,
+                     Source = "IDsource", Target = "IDtarget",
+                     Value = "value", NodeID = "name", fontSize=16)
+                     
+              #sinksRight=FALSE, colourScale=ColourScal, nodeWidth=40, fontSize=13, nodePadding=20)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

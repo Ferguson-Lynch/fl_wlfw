@@ -17,6 +17,8 @@ piepol<-"pie"  #put "pie" or "polar"
 #libraries 
 
 library(shiny)
+library(leaflet)
+library(stringr)
 library(shinyWidgets)
 library(shinyBS)
 library(data.table)
@@ -176,7 +178,7 @@ server<-function(input, output, session) {
                           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), 
                           margin = list(l = 0, r = 0, t = 0, b = 0)) #%>% 
       
-      #event_register("plotly_hover")  
+      event_register("plotly_hover")  
     
     fig
     
