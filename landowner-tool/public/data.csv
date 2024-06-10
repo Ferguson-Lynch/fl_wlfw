@@ -1,0 +1,48 @@
+concern,category
+Sheet and Rill Erosion,Soil & Land
+Wind Erosion,Soil & Land
+Ephemeral Gully Erosion,Soil & Land
+Classic Gully Erosion,Soil & Land
+"Bank Erosion from Streams, Shorelines or Water Conveyance Channels",Soil & Land
+Subsidence ,Soil & Land
+Compaction ,Soil & Land
+Organic Matter Depletion,Soil & Land
+Concentration of Salts or other Chemicals,Soil & Land
+Soil Organism Habitat Loss or Degradation,Soil & Land
+Aggregate Instability,Soil & Land
+Ponding and Flooding ,Water
+Seasonal High Water Table ,Water
+Seeps,Water
+Drifted Snow,Water
+Naturally Available Moisture Use ,Water
+Surface Water Depletion,Water
+Groundwater Depletion,Water
+Inefficient Irrigation Water Use,Water
+Nutrients Transported to Surface Water ,Water
+Nutrients Transported to Groundwater ,Water
+"Pathogens and Chemicals from Manure, Bio-solids or Compost Applications Tranported to Surface Water ",Water
+"Pathogens and Chemicals from Manure, Bio-solids or Compost Applications Tranported to Groundwater ",Water
+Sediment Transported to Surface Water,Water
+Pesticides Transported to Surface Water,Water
+Pesticides Transported to Groundwater,Water
+"Petroleum, Heavy Metals and Other Pollutants Transported to Surface Water",Water
+"Petroleum, Heavy Metals and Other Pollutants Transported to Groundwater",Water
+Salts Transported to Surface Water,Water
+Salts Transported to Groundwater,Water
+Elevated water temperature,Water
+Emissions of Particulate Matter (PM) and PM Precursors,Emissions
+Emissions of Greenhouse Gasses - GHGs ,Emissions
+Emissions of Ozone Precursors,Emissions
+Objectionable Odor,Emissions
+Emissions of Airborne Reactive Nitrogen,Emissions
+Plant Pest Pressure ,Plants & Livestock
+Plant Productivity and Health,Plants & Livestock
+Plant Structure and Composition,Plants & Livestock
+Wildfire Hazard from Biomass Accumulation,Hazards
+Feed and Forage Imbalance,Plants & Livestock
+Inadequate Livestock Shelter,Plants & Livestock
+"Inadequate Livestock Water Quantity, Quality and Distribution",Plants & Livestock
+Terrestrial Habitat for Wildlife and Invertebrates,Wildlife
+Aquatic Habitat for Fish and other Organisms,Wildlife
+Energy Efficiency of Equipment and Facilities,Energy Use
+Energy Efficiency of Farming/Ranching Practices and Field Operations,Energy Use
