@@ -12,20 +12,24 @@
         <label for="exampleInputPassword1" class="form-label">Your Role</label>
         <input type="password" class="form-control" id="exampleInputPassword1">
       </div>
-      <div class="container">
-          <div v-for="category in categories" :key="category.category" class="d-inline-block p-2">
+      <masonry :cols="3">
+        <div v-for="category in categories" :key="category.category">
           <div class="card">
             <div class="card-body">
-              <div class="card-title">{{category.category}}</div>
-                <div v-for="concern in category.concerns" :key="concern" class="form-check">
-                  <input type="checkbox" class="form-check-input" id="{{concern.concern}}">
-                  <label class="form-check-label" for="{{concern.concern}}">{{concern.concern}}</label>
-                </div>
+              <div class="card-title">
+                {{category.category}}
+              </div>
+              <div v-for="concern in category.concerns" :key="concern" class="form-check">
+                <input type="checkbox" class="form-check-input" id="{{concern.concern}}">
+                <label class="form-check-label" for="{{concern.concern}}">{{concern.concern}}</label>
               </div>
             </div>
           </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Explore conservation practices</button>
+        </div>
+      </masonry>
+      <RouterLink to="/explore">
+        <button type="submit" class="btn btn-primary">Explore conservation practices</button>
+      </RouterLink>
     </form>
   </div>
 </template>
@@ -79,5 +83,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.card{
+  margin: 15px;
+}
 </style>
