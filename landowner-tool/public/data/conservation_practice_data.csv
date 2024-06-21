@@ -1,0 +1,53 @@
+Conservation Practice,Sheet and Rill Erosion,Wind Erosion,Ephemeral Gully Erosion,Classic Gully Erosion,"Bank Erosion from Streams, Shorelines or Water Conveyance Channels",Subsidence ,Compaction ,Organic Matter Depletion,Concentration of Salts or other Chemicals,Soil Organism Habitat Loss or Degradation,Aggregate Instability,Ponding and Flooding ,Seasonal High Water Table ,Seeps,Drifted Snow,Naturally Available Moisture Use ,Surface Water Depletion,Groundwater Depletion,Inefficient Irrigation Water Use,Nutrients Transported to Surface Water ,Nutrients Transported to Groundwater ,"Pathogens and Chemicals from Manure, Bio-solids or Compost Applications Tranported to Surface Water ","Pathogens and Chemicals from Manure, Bio-solids or Compost Applications Tranported to Groundwater ",Sediment Transported to Surface Water,Pesticides Transported to Surface Water,Pesticides Transported to Groundwater,"Petroleum, Heavy Metals and Other Pollutants Transported to Surface Water","Petroleum, Heavy Metals and Other Pollutants Transported to Groundwater",Salts Transported to Surface Water,Salts Transported to Groundwater,Elevated water temperature,Emissions of Particulate Matter (PM) and PM Precursors,Emissions of Greenhouse Gasses - GHGs ,Emissions of Ozone Precursors,Objectionable Odor,Emissions of Airborne Reactive Nitrogen,Plant Pest Pressure ,Plant Productivity and Health,Plant Structure and Composition,Wildfire Hazard from Biomass Accumulation,Feed and Forage Imbalance,Inadequate Livestock Shelter,"Inadequate Livestock Water Quantity, Quality and Distribution",Terrestrial Habitat for Wildlife and Invertebrates,Aquatic Habitat for Fish and other Organisms,Energy Efficiency of Equipment and Facilities,Energy Efficiency of Farming/Ranching Practices and Field Operations
+CP #382 | Fence  | (Feet),1,0,0,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,2,0,3,0,0,1,1,0,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),0,0,0,0,4,0,0,0,0,0,2,3,0,0,0,0,0,0,0,1,0,1,0,2,0,0,0,0,0,0,1,0,1,0,0,0,4,4,4,0,1,0,0,2,2,0,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),2,2,2,2,0,0,1,0,0,-2,1,-1,0,0,0,0,1,-1,0,1,0,2,0,2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+CP #516 | Livestock Pipeline  | (Feet),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,5,0,0,3,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),4,4,3,1,3,0,2,4,2,2,2,2,0,0,0,2,1,1,0,1,1,1,1,2,2,1,0,0,2,1,1,2,2,0,1,0,2,5,4,3,5,2,2,2,1,0,2
+CP #340 | Cover Crop (IRA) | (Acres),4,4,3,0,0,0,2,2,0,2,2,1,1,1,1,2,0,0,1,2,1,1,1,2,2,1,0,0,0,0,0,3,2,0,0,1,4,2,1,0,1,0,0,1,0,0,1
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),5,5,4,2,2,0,2,4,1,5,5,0,2,2,1,1,3,0,0,1,1,1,1,3,1,1,1,1,1,1,4,1,4,0,2,0,5,5,5,0,0,2,0,5,4,3,1
+CP #314 | Brush Management  | (Acres),3,3,3,0,0,0,0,0,0,0,0,1,0,0,0,2,1,0,0,0,0,0,0,2,-1,0,0,0,0,0,0,0,1,0,0,0,5,5,5,4,4,0,0,3,0,0,0
+CP #356 | Dike and Levee  | (Feet),0,0,0,2,-1,0,0,0,1,0,0,4,-1,-1,0,0,1,1,0,0,-1,1,0,0,2,1,0,0,1,-1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,-1,0,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),4,4,2,1,4,0,0,0,0,1,1,0,0,0,0,0,2,1,2,1,0,0,0,1,-1,0,0,0,0,0,0,0,1,0,0,0,5,5,5,4,4,0,0,4,0,0,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),5,5,-1,0,0,1,2,3,0,4,4,1,0,0,0,2,0,0,2,2,-1,1,0,4,4,0,0,0,0,0,0,5,3,3,0,2,0,2,0,0,0,0,0,1,0,0,4
+CP #490 | Tree/Shrub Site Preparation  | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),4,4,0,0,0,1,2,2,0,3,2,0,0,0,0,2,0,0,1,2,0,1,0,3,3,0,0,0,1,0,0,4,3,1,0,1,0,2,0,0,0,0,0,1,0,0,3
+CP #666 | Forest Stand Improvement (IRA) | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #362 | Diversion  | (Feet),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #338 | Prescribed Burning (IRA) | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),4,4,0,0,0,0,1,4,2,1,3,1,0,1,0,3,0,0,2,3,3,1,0,3,2,2,0,0,1,1,0,1,1,0,0,0,3,4,1,0,2,0,0,1,0,0,2
+CP #468 | Lined waterway or outlet  | (Feet),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,1,0,4,0,3,0,0,0,0,1,2,0,0,0,0,5,2,0,0
+CP #512 | Pasture and Hay Planting  | (Acres),4,4,3,1,0,0,2,4,0,4,4,1,0,0,0,0,3,3,0,1,0,1,0,1,1,0,1,0,0,0,0,3,4,0,0,0,0,4,4,0,5,0,0,4,0,0,0
+CP #342 | Critical Area Planting (IRA) | (Acres),5,5,5,4,4,0,2,5,1,2,2,0,0,0,1,0,0,0,0,2,1,0,1,4,1,0,0,0,0,0,0,4,2,0,0,0,4,2,4,0,0,0,0,2,1,0,1
+CP #550 | Range planting (IRA) | (Acres),4,4,4,2,2,0,4,4,1,3,3,2,0,0,1,2,0,0,0,1,1,1,1,2,2,2,2,1,1,1,1,3,3,0,0,0,4,5,5,0,5,0,0,2,1,0,0
+CP #442 | Sprinkler system  | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #584 | Channel Bed Stabilization  | (Feet),0,0,0,2,2,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,4,2,4,0,0,0,0,0,1,0,0
+CP #327 | Conservation Cover (IRA) | (Acres),4,4,1,1,2,0,3,5,2,2,4,1,0,1,1,0,0,0,0,4,4,2,2,4,2,2,0,0,2,2,0,4,4,1,0,1,4,4,4,0,0,0,0,3,1,0,0
+CP #472 | Access Control  | (Acres),3,1,4,4,5,0,4,1,0,1,1,1,2,1,0,3,0,0,0,1,1,1,1,3,1,0,1,1,0,0,3,2,1,1,0,0,5,3,4,3,3,1,0,4,3,0,0
+CP #657 | Wetland Restoration (IRA) | (Acres),0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,3,1,1,0,2,1,1,2,0,1,0,0,0,3,0,-1,0,4,4,4,0,2,0,0,2,1,0,0
+CP #614 | Watering Facility  | (Num.),2,2,2,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,2,1,2,0,0,1,0,1,0,1,0,0,0,0,0,0,2,0,0,2,0,5,2,0,1,1
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),3,2,1,3,4,0,2,4,1,5,4,-1,2,1,0,0,3,0,0,5,5,3,1,5,3,1,3,1,1,1,5,1,3,0,1,0,3,5,5,0,0,1,0,5,5,0,1
+CP #590 | Nutrient Management (IRA) | (Acres),0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,5,5,4,4,0,0,0,0,0,1,1,0,2,3,2,2,3,0,4,3,0,4,0,0,0,3,0,0
+CP #595 | Pest Management Conservation System  | (Acres),2,2,2,2,0,0,2,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,5,5,0,0,0,0,0,2,0,2,1,0,4,0,0,0,0,0,2,4,2,0,1
+CP #441 | Micro-irrigation | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #649 | Structures for Wildlife  | (Num.),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,0,0
+CP #578 | Stream Crossing  | (Num.),0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,-3,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,3,0,0
+CP #587 | Structure for Water Control  | (Num.),0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,5,5,2,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,4,0,0
+CP #395 | Stream Habitat Improvement and Management  | (Acres),0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,4,0,1,0,0,0,4,4,4,0,0,0,0,3,5,0,0
+CP #410 | Grade Stabilization Structure  | (Num.),0,0,0,2,2,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0
+CP #554 | Drainage Water Management | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),2,2,1,0,4,0,4,4,2,0,0,-2,2,2,0,0,0,0,0,5,5,3,2,4,2,2,2,1,1,1,2,1,2,0,0,0,4,5,4,0,4,0,0,2,2,0,1
+CP #484 | Mulching (IRA) | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #396 | Aquatic Organism Passage  | (Miles),0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,2,5,0,0
+CP #386 | Field Border (IRA) | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #574 | Spring Development  | (Num.),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #658 | Wetland Creation  | (Acres),0,0,0,0,0,0,0,2,0,0,0,1,-1,0,0,0,2,0,0,3,1,1,0,2,1,1,2,0,1,0,0,0,3,0,-1,0,4,4,4,0,2,0,0,2,1,0,0
+CP #659 | Wetland Enhancement  | (Acres),0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,3,1,1,0,2,1,1,2,0,1,0,0,0,1,0,-1,0,4,4,4,0,2,0,0,2,1,0,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1,0,3,0,0,0,0,0,0,0,0,0,0,-1,0,4,4,4,0,2,0,0,5,0,0,0
+CP #533 | Pumping Plant  | (Num.),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #642 | Water Well  | (Num.),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #378 | Pond  | (Num.),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #646 | Shallow Water Development and Management  | (Acres),0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,1,1,2,-1,2,0,0,2,1,0,-1,0,0,0,0,0,0,1,2,4,0,1,0,0,5,0,0,0
+CP #412 | Grassed Waterway (IRA) | (Acres),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),2,2,2,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,1,0,0,0,4,4,4,0,2,0,0,5,5,0,0

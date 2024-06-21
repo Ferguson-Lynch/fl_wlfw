@@ -13,21 +13,22 @@
         <input class="form-control" id="role">
       </div>
       <masonry :cols="3">
-        <div v-for="category in categories" :key="category.category">
+        <div v-for="category in categories" :key="category.categoryName">
           <div class="card">
             <div class="card-body">
+              <h5 class="card-title">{{ category.categoryName }}</h5>
               <div class="card-title">
-                {{category.category}}
+                {{ category.category }}
               </div>
               <div v-for="concern in category.concerns" :key="concern" class="form-check">
-                <input type="checkbox" class="form-check-input" id="{{concern.concern}}">
-                <label class="form-check-label" for="{{concern.concern}}">{{concern.concern}}</label>
+                <input type="checkbox" class="form-check-input" :value="concern" v-model="checkedConcerns">
+                <label class="form-check-label" :for="concern">{{ concern }}</label>
               </div>
             </div>
           </div>
         </div>
       </masonry>
-      <RouterLink :to="'/explore?concerns=' + concernString">
+      <RouterLink :to="`/explore?concerns=${ getConcernString() }`">
         <button type="submit" class="btn btn-primary">Explore conservation practices</button>
       </RouterLink>
     </form>
@@ -42,13 +43,13 @@ function concernsByCategoryFromJson(jsonObj) {
   for (const line of jsonObj) {
     let found = false;
     for (const entry of concernsByCategory) {
-      if (line.category == entry.category) {
-         entry.concerns.push({'concern': line.concern});
+      if (line.category == entry.categoryName) {
+         entry.concerns.push(line.concern.trim());
          found = true;
       } 
     }
     if (!found) {
-      concernsByCategory.push({'category': line.category, concerns: [{'concern':line.concern}]})
+      concernsByCategory.push({'categoryName': line.category, concerns: [line.concern.trim()]})
     }
   }
   return concernsByCategory;
@@ -59,11 +60,12 @@ export default {
   data() {
     return {
       categories: [],
+      checkedConcerns: store.checkedConcerns,
     }
   },
   async created() {
     let categories;
-    await fetch('data.csv')
+    await fetch('data/concerns_by_category.csv')
         .then( res => res.text() )
         .then( csv => {
             Papa.parse( csv, {
@@ -78,7 +80,16 @@ export default {
         });
         this.categories = categories;
   },
+  methods: {
+    getConcernString() {
+      store.checkedConcerns = this.checkedConcerns;
+      return encodeURIComponent(this.checkedConcerns);
+    }
+  }
 }
+</script>
+<script setup>
+import { store } from '../store.js'
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

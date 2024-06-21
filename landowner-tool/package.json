@@ -11,6 +11,7 @@
     "@yeger/vue-masonry-wall": "^5.0.10",
     "bootstrap": "^5.3.3",
     "core-js": "^3.8.3",
+    "d3-svg-legend": "^2.25.6",
     "fs": "^0.0.1-security",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",

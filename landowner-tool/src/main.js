@@ -3,7 +3,7 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import masonry from 'vue-next-masonry'
 
@@ -16,8 +16,8 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 })
 
-createApp(App).use(router).use(masonry).mount('#app')
+createApp(App).use(masonry).use(router).mount('#app')
