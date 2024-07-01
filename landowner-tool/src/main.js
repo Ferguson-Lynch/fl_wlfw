@@ -11,8 +11,8 @@ import ConcernPicker from './components/ConcernPicker.vue'
 import ConservationPracticeExplorer from './components/ConservationPracticeExplorer.vue'
 
 const routes = [
-  { path: '/', component: ConcernPicker },
-  { path: '/explore', component: ConservationPracticeExplorer },
+  { path: '/', component: ConcernPicker, props: true },
+  { path: '/explore', component: ConservationPracticeExplorer, props: true },
 ]
 
 const router = createRouter({

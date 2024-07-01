@@ -13,14 +13,16 @@
         <input class="form-control" id="role">
       </div>
       <masonry :cols="3">
-        <div v-for="category in categories" :key="category.categoryName">
+        <div v-for="(value, key) in concernsByCategory" :key="key">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ category.categoryName }}</h5>
-              <div class="card-title">
-                {{ category.category }}
+              <div class="form-check">
+                <input type="checkbox" :id="key + '-checkbox'" class="form-check-input" @click="toggleAll(key)">
+                <label class="card-title">
+                  <h5>{{ key }}</h5>
+                </label>
               </div>
-              <div v-for="concern in category.concerns" :key="concern" class="form-check">
+              <div v-for="concern in value" :key="concern" class="form-check">
                 <input type="checkbox" class="form-check-input" :value="concern" v-model="checkedConcerns">
                 <label class="form-check-label" :for="concern">{{ concern }}</label>
               </div>
@@ -28,7 +30,7 @@
           </div>
         </div>
       </masonry>
-      <RouterLink :to="`/explore?concerns=${ getConcernString() }`">
+      <RouterLink :to="`/explore?concerns=${getConcernString()}`">
         <button type="submit" class="btn btn-primary">Explore conservation practices</button>
       </RouterLink>
     </form>
@@ -36,54 +38,92 @@
 </template>
 
 <script>
-import Papa from 'papaparse';
+export const ALL_CHECKED = 'all-checked';
+export const SOME_CHECKED = 'some-checked';
+export const NONE_CHECKED = 'none-checked';
 
-function concernsByCategoryFromJson(jsonObj) {
-  const concernsByCategory = [];
-  for (const line of jsonObj) {
-    let found = false;
-    for (const entry of concernsByCategory) {
-      if (line.category == entry.categoryName) {
-         entry.concerns.push(line.concern.trim());
-         found = true;
-      } 
-    }
-    if (!found) {
-      concernsByCategory.push({'categoryName': line.category, concerns: [line.concern.trim()]})
+function intersection(listA, listB) {
+  if (!listA || !listB) return [];
+  const result = [];
+  for (const elem of listA) {
+    if (listB.includes(elem)) {
+      result.push(elem)
     }
   }
-  return concernsByCategory;
+  return result;
 }
 
 export default {
   name: 'ConcernPicker',
+  props: ['concernsByCategory'],
   data() {
     return {
-      categories: [],
       checkedConcerns: store.checkedConcerns,
+      // The toggle state of categories that include concerns the user
+      // has interacted with so far
+      categoryToggleStates: {},
     }
   },
-  async created() {
-    let categories;
-    await fetch('data/concerns_by_category.csv')
-        .then( res => res.text() )
-        .then( csv => {
-            Papa.parse( csv, {
-                header: true,
-                complete: function(results) {
-                     categories = concernsByCategoryFromJson(results.data);
-                }
-            });
-        })
-        .catch(function() {
-         console.log("error"); 
-        });
-        this.categories = categories;
+  watch: {
+    // Indeterminate cannot be set via HTML. For consistency, setting all checkbox state here.
+    checkedConcerns() {
+      for (const category in this.concernsByCategory) {
+        const concernsIntersection = intersection(this.checkedConcerns, this.concernsByCategory[category]);
+        const checkboxElement = document.getElementById(category + '-checkbox');
+        if (concernsIntersection.length == 0) {
+          this.categoryToggleStates[category] = NONE_CHECKED;
+          checkboxElement.checked = false;
+          checkboxElement.indeterminate = false;
+        } else if (concernsIntersection.length == this.concernsByCategory[category].length) {
+          this.categoryToggleStates[category] = ALL_CHECKED;
+          checkboxElement.checked = true;
+          checkboxElement.indeterminate = false;
+        } else {
+          this.categoryToggleStates[category] = SOME_CHECKED;
+          checkboxElement.checked = false;
+          checkboxElement.indeterminate = true;
+        }
+      }
+    }
   },
   methods: {
+    created() {
+      this.ALL_CHECKED = ALL_CHECKED;
+      this.SOME_CHECKED = SOME_CHECKED;
+      this.NONE_CHECKED = NONE_CHECKED;
+    },
     getConcernString() {
       store.checkedConcerns = this.checkedConcerns;
       return encodeURIComponent(this.checkedConcerns);
+    },
+    toggleAll(categoryName) {
+      if (!this.categoryToggleStates[categoryName]) {
+        this.categoryToggleStates[categoryName] = ALL_CHECKED; //const?
+        for (const concern of this.concernsByCategory[categoryName]) {
+          if (!this.checkedConcerns.includes(concern)) {
+            this.checkedConcerns.push(concern);
+          }
+        }
+        return;
+      }
+      switch (this.categoryToggleStates[categoryName]) {
+        case ALL_CHECKED:
+          this.categoryToggleStates[categoryName] = NONE_CHECKED;
+          for (const concern of this.concernsByCategory[categoryName]) {
+            this.checkedConcerns = this.checkedConcerns.filter(val => val != concern);
+          }
+          break;
+        case NONE_CHECKED:
+        case SOME_CHECKED:
+          this.categoryToggleStates[categoryName] = ALL_CHECKED;
+          for (const concern of this.concernsByCategory[categoryName]) {
+            if (!this.checkedConcerns.includes(concern)) {
+              this.checkedConcerns.push(concern);
+            }
+          }
+          break;
+      }
+      console.log(categoryName);
     }
   }
 }
@@ -94,7 +134,7 @@ import { store } from '../store.js'
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.card{
+.card {
   margin: 15px;
 }
 </style>
