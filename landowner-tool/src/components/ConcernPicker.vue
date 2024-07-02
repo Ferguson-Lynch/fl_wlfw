@@ -42,16 +42,7 @@ export const ALL_CHECKED = 'all-checked';
 export const SOME_CHECKED = 'some-checked';
 export const NONE_CHECKED = 'none-checked';
 
-function intersection(listA, listB) {
-  if (!listA || !listB) return [];
-  const result = [];
-  for (const elem of listA) {
-    if (listB.includes(elem)) {
-      result.push(elem)
-    }
-  }
-  return result;
-}
+import { intersection } from './util.js';
 
 export default {
   name: 'ConcernPicker',
@@ -65,7 +56,8 @@ export default {
     }
   },
   watch: {
-    // Indeterminate cannot be set via HTML. For consistency, setting all checkbox state here.
+    // Indeterminate checkbox state cannot be set via HTML. For consistency, 
+    // setting all checkbox state here.
     checkedConcerns() {
       for (const category in this.concernsByCategory) {
         const concernsIntersection = intersection(this.checkedConcerns, this.concernsByCategory[category]);
@@ -87,18 +79,13 @@ export default {
     }
   },
   methods: {
-    created() {
-      this.ALL_CHECKED = ALL_CHECKED;
-      this.SOME_CHECKED = SOME_CHECKED;
-      this.NONE_CHECKED = NONE_CHECKED;
-    },
     getConcernString() {
       store.checkedConcerns = this.checkedConcerns;
       return encodeURIComponent(this.checkedConcerns);
     },
     toggleAll(categoryName) {
       if (!this.categoryToggleStates[categoryName]) {
-        this.categoryToggleStates[categoryName] = ALL_CHECKED; //const?
+        this.categoryToggleStates[categoryName] = ALL_CHECKED;
         for (const concern of this.concernsByCategory[categoryName]) {
           if (!this.checkedConcerns.includes(concern)) {
             this.checkedConcerns.push(concern);
@@ -123,7 +110,6 @@ export default {
           }
           break;
       }
-      console.log(categoryName);
     }
   }
 }

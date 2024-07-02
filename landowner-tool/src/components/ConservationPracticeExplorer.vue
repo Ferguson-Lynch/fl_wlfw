@@ -13,18 +13,202 @@
 <script>
 import * as d3 from 'd3';
 
-function lineHasValueForChosenBenefit(line, chosenBenefit) {
-  for (const key of Object.keys(line)) {
-    for (const benefit of chosenBenefit) {
-      if (benefit == key && line[key] && line[key] > 0) {
-        return true;
+const CHART_MARGIN = { top: 80, right: 25, bottom: 30, left: 330 };
+const CHART_WIDTH = 1100;
+const CHART_HEIGHT = 850;
+
+export default {
+  Name: 'ConservationPracticeExplorer',
+  props: ['practiceConcernPairs', 'practiceDescriptions'],
+  data() {
+    return {
+      relevantPracticeConcernPairs: [],
+    }
+  },
+  watch: {
+    practiceConcernPairs: {
+      handler(practiceConcernPairs) {
+        // If the data is loaded
+        if (practiceConcernPairs.length > 0) {
+          // Wait until concerns are available from the router
+          this.$router.isReady().then(() => {
+            this.loadHeatmap();
+          });
+        }
+      },
+      // Run on initialization, the component can be initializaed with defined practicesByConcern
+      immediate: true,
+    },
+  },
+  methods: {
+    loadHeatmap() {
+      const chosenConcerns = this.$route.query.concerns.split(',');
+      this.filterPracticesByChosenConcerns(this.practiceConcernPairs, chosenConcerns);
+      this.createHeatmap();
+    },
+    filterPracticesByChosenConcerns(practiceConcernPairs, chosenConcerns) {
+      const allRelevantConservationPractices = new Set();
+      for (const pair of this.practiceConcernPairs) {
+        if (chosenConcerns.includes(pair['concern']) && pair['value'] != 0) {
+          allRelevantConservationPractices.add(pair['conservation_practice']);
+        }
       }
+      this.relevantPracticeConcernPairs =
+        practiceConcernPairs.filter((pair) =>
+        (chosenConcerns.includes(pair['concern']) &&
+          allRelevantConservationPractices.has(pair['conservation_practice'])));
+    },
+    createHeatmap() {
+      let svg = this.initializeHeatmap();
+      let conservationPractices = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.conservation_practice; })
+      let concerns = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.concern; })
+
+      // Add x axis
+      let x = d3.scaleBand()
+        .range([0, CHART_WIDTH])
+        .domain(concerns)
+        .padding(0.05);
+
+      let xAxis = d3.axisTop(x).tickSize(0).scale(x);
+      let axisObj = svg.append("g")
+        .attr("class", "x axis")
+        .style("font-size", 15)
+        .call(xAxis);
+      axisObj.select(".domain").remove();
+      axisObj.selectAll(".tick text")
+        .call(wrapText, x.bandwidth());
+
+      // Add y axis 
+      let y = d3.scaleBand()
+        .range([CHART_HEIGHT, 0])
+        .domain(conservationPractices)
+        .padding(0.05);
+      svg.append("g")
+        .style("font-size", 15)
+        .call(d3.axisLeft(y).tickSize(0))
+        .select(".domain").remove()
+
+      var colorScale = d3.scaleLinear()
+        .domain([-2, 1, 0, 1, 2, 3, 4, 5])
+        .range(["#ad1313", "#d65151", "#f2efee", "#cde3ee", "#8fc2dc", "#4b94c4", "#2265a3", "#053061"])
+
+      this.addValues(svg, x, y, colorScale);
+      this.addLegend(svg, colorScale);
+
+    },
+    initializeHeatmap() {
+      // set the dimensions and margins of the graph
+      // append the svg object to the body of the page
+      let svg = d3.select("#heatmap")
+        .append("svg")
+        .attr("width", CHART_WIDTH + CHART_MARGIN.left + CHART_MARGIN.right)
+        .attr("height", CHART_HEIGHT + CHART_MARGIN.top + CHART_MARGIN.bottom)
+        .append("g")
+        .attr("transform",
+          "translate(" + CHART_MARGIN.left + "," + CHART_MARGIN.top + ")");
+      return svg;
+    },
+    addValues(svg, x, y, colorScale) {
+      let squares = svg.selectAll()
+        .data(this.relevantPracticeConcernPairs, function (d) { return d.concern + ':' + d.conservation_practice; })
+        .enter();
+
+      squares.append("rect")
+        .attr("x", function (d) { return x(d.concern) })
+        .attr("y", function (d) { return y(d.conservation_practice) })
+        .attr("rx", 4)
+        .attr("ry", 4)
+        .attr("width", x.bandwidth())
+        .attr("height", y.bandwidth())
+        .style("fill", function (d) { return colorScale(d.value || 0) })
+        .style("stroke-width", 4)
+        .style("stroke", "none")
+        .style("opacity", 0.8)
+
+      squares.insert("text")
+        .attr("x", function (d) { return x(d.concern) + x.bandwidth() / 2 })
+        .attr("y", function (d) { return y(d.conservation_practice) + y.bandwidth() / 2 })
+        .attr("text-anchor", "middle")
+        .attr("dy", "0.5em")
+        .attr("fill", d => d.value > 1 ? "white" : "black")
+        .attr("font-family", "sans-serif")
+        .text((d) => d.value);
+    },
+    addLegend(svg, colorScale) {
+      let keys = [-2, -1, 0, 1, 2, 3, 4, 5]
+
+      let legendBoxWidth = 40
+      let legendBoxHeight = 25
+      let legendVerticalOffset = 70
+
+      svg.selectAll("legend-boxes")
+        .data(keys)
+        .enter()
+        .append("rect")
+        .attr("x", function (d, i) { return i * (legendBoxWidth + 5) })
+        .attr("y", -legendVerticalOffset)
+        .attr("width", legendBoxWidth)
+        .attr("height", legendBoxHeight)
+        .style("fill", function (d) { return colorScale(d) })
+
+      svg.selectAll("legend-numbers")
+        .data(keys)
+        .enter()
+        .append("text")
+        .attr("x", function (d, i) { return + i * (legendBoxWidth + 5) + legendBoxWidth / 2 })
+        .attr("y", -legendVerticalOffset + legendBoxHeight / 2)
+        .attr("fill", d => d > 1 ? "white" : "black")
+        // make into function
+        .text(function (d) { return d })
+        .attr("text-anchor", "middle")
+        .style("alignment-baseline", "middle")
+
+      svg.append("text")
+        .attr("x", -8)
+        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 - 10)
+        .text("Conservation practice")
+        .attr("text-anchor", "end")
+        .style("alignment-baseline", "middle")
+
+      svg.append("text")
+        .attr("x", -8)
+        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 + 10)
+        .text("has detrimental effect")
+        .attr("text-anchor", "end")
+        .style("alignment-baseline", "middle")
+
+      svg.append("text")
+        .attr("x", 8 * (legendBoxWidth + 5))
+        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 - 10)
+        .text("Conservation practice")
+        .attr("text-anchor", "start")
+        .style("alignment-baseline", "middle")
+
+      svg.append("text")
+        .attr("x", 8 * (legendBoxWidth + 5))
+        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 + 10)
+        .text("has protective effect")
+        .attr("text-anchor", "start")
+        .style("alignment-baseline", "middle")
     }
   }
-  return false;
 }
 
-function wrap(text, width) {
+// Copyright 2019–2020 Observable, Inc.
+// Permission to use, copy, modify, and/or distribute this software for any
+// purpose with or without fee is hereby granted, provided that the above
+// copyright notice and this permission notice appear in all copies.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+// WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+// ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+// WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+// OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+//
+// Adapted from https://gist.github.com/mbostock/7555321
+function wrapText(text, width) {
   text.each(function () {
     var text = d3.select(this),
       words = text.text().split(/\s+/).reverse(),
@@ -47,13 +231,13 @@ function wrap(text, width) {
       }
       word = words.pop();
     }
-    var tspans = text.selectAll("tspan");
+    let tspans = text.selectAll("tspan");
     // lineHeightEms
-    var h = 1.05;
+    let h = 1.05;
     tspans.each(function (d, i) {
       // Calculate the y offset (dy) for each tspan so that the vertical centre
       // of the tspans roughly aligns with the text element's y position.
-      var dy = i * h;
+      let dy = i * h;
       dy -= ((tspans.size() - 1) * h);
       d3.select(this)
         .attr("y", y)
@@ -61,280 +245,6 @@ function wrap(text, width) {
     });
   });
 }
-
-function parseConservationPracticeName(line) {
-  return line.split(' | ')[1];
-}
-
-
-
-export default {
-  Name: 'ConservationPracticeExplorer',
-  props: ['practicesByConcern', 'dataLoaded'],
-  data() {
-    return {
-      relevantPractices: [],
-    }
-  },
-  watch: {
-    practicesByConcern: {
-      handler(practicesByConcern) {
-        // If the data is loaded
-        if (practicesByConcern.length > 0) {
-          // Wait until concerns are available from the router
-          this.$router.isReady().then(() => {
-            this.loadHeatmap();
-          });
-        }
-      },
-      // Run on initialization, the component can be initializaed with defined practicesByConcern
-      immediate: true,
-    },
-  },
-  methods: {
-    loadHeatmap() {
-      const chosenConcerns = this.$route.query.concerns.split(',');
-      this.filterPracticesByChosenConcerns(this.practicesByConcern, chosenConcerns);
-      this.createHeatmap();
-    },
-    filterPracticesByChosenConcerns(practicesByConcern, chosenConcerns) {
-      const longForm = []
-      for (const line of practicesByConcern) {
-        if (lineHasValueForChosenBenefit(line, chosenConcerns)) {
-          for (const key of Object.keys(line)) {
-            if (key == "Conservation Practice" || !chosenConcerns.includes(key)) {
-              continue;
-            }
-            longForm.push({
-              conservation_practice: parseConservationPracticeName(line['Conservation Practice']),
-              concern: key,
-              value: line[key]
-            })
-          }
-        }
-      }
-      this.relevantPractices = longForm;
-    },
-    createHeatmap() {
-      // set the dimensions and margins of the graph
-      var margin = { top: 80, right: 25, bottom: 30, left: 330 },
-        width = 1100 - margin.left - margin.right,
-        height = 850 - margin.top - margin.bottom;
-
-      // append the svg object to the body of the page
-      var svg = d3.select("#heatmap")
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-
-      // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-      var conservationPractices = d3.map(this.relevantPractices, function (d) { return d.conservation_practice; })
-      var concerns = d3.map(this.relevantPractices, function (d) { return d.concern; })
-
-      // Build X scales and axis:
-      var x = d3.scaleBand()
-        .range([0, width])
-        .domain(concerns)
-        .padding(0.05);
-
-      var xAxis = d3.axisTop(x).tickSize(0).scale(x);
-      var axisObj = svg.append("g")
-        .attr("class", "x axis")
-        .style("font-size", 15)
-        .call(xAxis);
-      axisObj.select(".domain").remove();
-      axisObj.selectAll(".tick text")
-        .call(wrap, x.bandwidth());
-
-      // Build Y scales and axis:
-      var y = d3.scaleBand()
-        .range([height, 0])
-        .domain(conservationPractices)
-        .padding(0.05);
-      svg.append("g")
-        .style("font-size", 15)
-        .call(d3.axisLeft(y).tickSize(0))
-        .select(".domain").remove()
-
-      // Build color scale
-      var colorScale = d3.scaleLinear()
-        .domain([-2, 1, 0, 1, 2, 3, 4, 5])
-        .range(["#ad1313", "#d65151", "#f2efee", "#cde3ee", "#8fc2dc", "#4b94c4", "#2265a3", "#053061"])
-
-      // create a tooltip
-      // var Tooltip = d3.select("#heatmap")
-      //   .append("div")
-      //   .style("opacity", 0)
-      //   .attr("class", "tooltip")
-      //   .style("background-color", "white")
-      //   .style("border", "solid")
-      //   .style("border-width", "1px")
-      //   .style("border-radius", "5px")
-      //   .style("padding", "5px")
-
-      //    // Three function that change the tooltip when user hover / move / leave a cell
-      //  var mouseover = function() {
-      //     Tooltip
-      //       .style("opacity", 1)
-      //  }
-      // var mousemove = function(d) {
-      //   Tooltip
-      //     .html(getTooltipText(d))
-      //     // getBoundingClientRect solves inconsistent mouse problem w/ scrolling
-      //     .style('left', (d3.mouse(this)[0] + d3.select('svg').node().getBoundingClientRect().x + 350) + 'px')
-      //     .style('top', (d3.mouse(this)[1] + d3.select('svg').node().getBoundingClientRect().y + 80) + 'px')
-      //   }
-      // var mouseleave = function() {
-      //   Tooltip
-      //     .style("opacity", 0)
-      // }
-
-      // function getTooltipText(d) {
-      //   var text = d.conservation_practice + " has ";
-      //   switch (d.value) {
-      //     case "-2":
-      //     case "-1":
-      //       text += "a detrimental";
-      //       break;  
-      //     case "0":
-      //       text += "no";
-      //       break;
-      //     case "1":
-      //     case "2":
-      //       text += "a slightly positive";  
-      //       break;
-      //     case "3":
-      //       text += "a positive";  
-      //       break;
-      //     case "4":
-      //     case "5":
-      //       text += "a strongly positive";  
-      //       break;
-      //     default:
-      //       text += "an unknown";  
-      //   }
-      //   text += " effect on ";
-      //   text += d.concern;
-      //   return text;
-      // }
-
-      // add the squares
-      var squares = svg.selectAll()
-        .data(this.relevantPractices, function (d) { return d.concern + ':' + d.conservation_practice; })
-        .enter();
-
-      squares.append("rect")
-        .attr("x", function (d) { return x(d.concern) })
-        .attr("y", function (d) { return y(d.conservation_practice) })
-        .attr("rx", 4)
-        .attr("ry", 4)
-        .attr("width", x.bandwidth())
-        .attr("height", y.bandwidth())
-        .style("fill", function (d) { return colorScale(d.value) })
-        .style("stroke-width", 4)
-        .style("stroke", "none")
-        .style("opacity", 0.8)
-      //.on("mouseover", mouseover)
-      //.on("mousemove", mousemove)
-      //.on("mouseleave", mouseleave)
-
-      // TODO: https://jonathansoma.com/lede/storytelling/d3/text-elements/
-      squares.insert("text")
-        .attr("x", function (d) { return x(d.concern) + x.bandwidth() / 2 })
-        .attr("y", function (d) { return y(d.conservation_practice) + y.bandwidth() / 2 })
-        .attr("text-anchor", "middle")
-        .attr("dy", "0.5em")
-        .attr("fill", d => d.value > 1 ? "white" : "black")
-        .attr("font-family", "sans-serif")
-        .text((d) => d.value);
-
-
-      // Add title to graph
-      svg.append("text")
-        .attr("x", 0)
-        //TODO fix
-        .attr("y", -150)
-        .attr("text-anchor", "left")
-        .style("font-size", "22px")
-        .text("Conservation Practice Effectiveness");
-
-      // Add subtitle to graph
-      svg.append("text")
-        .attr("x", 0)
-        .attr("y", -20)
-        .attr("text-anchor", "left")
-        .style("font-size", "14px")
-        .style("fill", "grey")
-        .style("max-width", 400);
-
-
-      let keys = [-2, -1, 0, 1, 2, 3, 4, 5]
-      // Usually you have a color scale in your chart already
-
-      let legendBoxWidth = 40
-      let legendBoxHeight = 25
-      let legendVerticalOffset = 70
-      // Add one dot in the legend for each name.
-      svg.selectAll("legend-boxes")
-        .data(keys)
-        .enter()
-        .append("rect")
-        .attr("x", function (d, i) { return i * (legendBoxWidth + 5) }) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("y", -legendVerticalOffset)
-        .attr("width", legendBoxWidth)
-        .attr("height", legendBoxHeight)
-        .style("fill", function (d) { return colorScale(d) })
-
-      // Add one dot in the legend for each name.
-      svg.selectAll("legend-numbers")
-        .data(keys)
-        .enter()
-        .append("text")
-        .attr("x", function (d, i) { return + i * (legendBoxWidth + 5) + legendBoxWidth / 2 }) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("y", -legendVerticalOffset + legendBoxHeight / 2)
-        .attr("fill", d => d > 1 ? "white" : "black")
-        // make into function
-        .text(function (d) { return d })
-        .attr("text-anchor", "middle")
-        .style("alignment-baseline", "middle")
-
-      svg.append("text")
-        .attr("x", -8) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 - 10)
-        .text("Conservation practice")
-        .attr("text-anchor", "end")
-        .style("alignment-baseline", "middle")
-
-      svg.append("text")
-        .attr("x", -8) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 + 10)
-        .text("has detrimental effect")
-        .attr("text-anchor", "end")
-        .style("alignment-baseline", "middle")
-
-      svg.append("text")
-        .attr("x", 8 * (legendBoxWidth + 5)) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 - 10)
-        .text("Conservation practice")
-        .attr("text-anchor", "start")
-        .style("alignment-baseline", "middle")
-
-      svg.append("text")
-        .attr("x", 8 * (legendBoxWidth + 5)) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("y", -legendVerticalOffset + legendBoxHeight / 2 + 10)
-        .text("has protective effect")
-        .attr("text-anchor", "start")
-        .style("alignment-baseline", "middle")
-    }
-  }
-}
-
-
-
-
 
 </script>
 
