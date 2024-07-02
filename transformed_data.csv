@@ -739,13 +739,13 @@ CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Arkansas,0
 CP #356 | Dike and Levee  | (Feet),Ft,Arkansas,0
 CP #362 | Diversion  | (Feet),Ft,Arkansas,0
 CP #378 | Pond  | (Num.),Num,Arkansas,0
-CP #382 | Fence  | (Feet),Ft,Arkansas,0
+CP #382 | Fence  | (Feet),Ft,Arkansas,26400
 CP #386 | Field Border (IRA) | (Acres),Ac,Arkansas,0
-CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Arkansas,0
-CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Arkansas,0
-CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Arkansas,0
-CP #396 | Aquatic Organism Passage  | (Miles),Miles,Arkansas,0
-CP #410 | Grade Stabilization Structure  | (Num.),Num,Arkansas,0
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Arkansas,50
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Arkansas,50
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Arkansas,180
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Arkansas,50
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Arkansas,25
 CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Arkansas,0
 CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Arkansas,0
 CP #441 | Micro-irrigation | (Acres),Ac,Arkansas,0
@@ -755,21 +755,21 @@ CP #472 | Access Control  | (Acres),Ac,Arkansas,0
 CP #484 | Mulching (IRA) | (Acres),Ac,Arkansas,0
 CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Arkansas,0
 CP #512 | Pasture and Hay Planting  | (Acres),Ac,Arkansas,0
-CP #516 | Livestock Pipeline  | (Feet),Ft,Arkansas,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Arkansas,26400
 CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Arkansas,0
 CP #533 | Pumping Plant  | (Num.),Num,Arkansas,0
 CP #550 | Range planting (IRA) | (Acres),Ac,Arkansas,0
 CP #554 | Drainage Water Management | (Acres),Ac,Arkansas,0
-CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Arkansas,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Arkansas,"20,000"
 CP #574 | Spring Development  | (Num.),Num,Arkansas,0
-CP #578 | Stream Crossing  | (Num.),Num,Arkansas,0
-CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Arkansas,0
+CP #578 | Stream Crossing  | (Num.),Num,Arkansas,50
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Arkansas,26400
 CP #584 | Channel Bed Stabilization  | (Feet),Ft,Arkansas,0
-CP #587 | Structure for Water Control  | (Num.),Num,Arkansas,0
+CP #587 | Structure for Water Control  | (Num.),Num,Arkansas,25
 CP #590 | Nutrient Management (IRA) | (Acres),Ac,Arkansas,0
 CP #595 | Pest Management Conservation System  | (Acres),Ac,Arkansas,0
-CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Arkansas,0
-CP #614 | Watering Facility  | (Num.),Num,Arkansas,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Arkansas,50
+CP #614 | Watering Facility  | (Num.),Num,Arkansas,50
 CP #642 | Water Well  | (Num.),Num,Arkansas,0
 CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Arkansas,0
 CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Arkansas,0
@@ -779,3 +779,56 @@ CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Arkansas,0
 CP #658 | Wetland Creation  | (Acres),Ac,Arkansas,0
 CP #659 | Wetland Enhancement  | (Acres),Ac,Arkansas,0
 CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Arkansas,0
+CP #314 | Brush Management  | (Acres),Ac,Kentucky,0
+CP #315 | Herbaceous Weed Treatment  | (Acres),Ac,Kentucky,0
+CP #327 | Conservation Cover (IRA) | (Acres),Ac,Kentucky,200
+CP #328 | Conservation Crop Rotation (IRA) | (Acres),Ac,Kentucky,0
+CP #329 | Residue and Tillage Mgmt (No Till) (IRA) | (Acres),Ac,Kentucky,0
+CP #338 | Prescribed Burning (IRA) | (Acres),Ac,Kentucky,0
+CP #340 | Cover Crop (IRA) | (Acres),Ac,Kentucky,0
+CP #342 | Critical Area Planting (IRA) | (Acres),Ac,Kentucky,0
+CP #345 | Residue and Tillage Mgmt (Reduced Till) (IRA) | (Acres),Ac,Kentucky,0
+CP #356 | Dike and Levee  | (Feet),Ft,Kentucky,0
+CP #362 | Diversion  | (Feet),Ft,Kentucky,0
+CP #378 | Pond  | (Num.),Num,Kentucky,0
+CP #382 | Fence  | (Feet),Ft,Kentucky,3700
+CP #386 | Field Border (IRA) | (Acres),Ac,Kentucky,80
+CP #390 | Riparian Herbaceous Cover (IRA) | (Acres),Ac,Kentucky,45
+CP #391 | Riparian Forest Buffer (IRA) | (Acres),Ac,Kentucky,25
+CP #395 | Stream Habitat Improvement and Management  | (Acres),Ac,Kentucky,13
+CP #396 | Aquatic Organism Passage  | (Miles),Miles,Kentucky,2
+CP #410 | Grade Stabilization Structure  | (Num.),Num,Kentucky,0
+CP #412 | Grassed Waterway (IRA) | (Acres),Ac,Kentucky,175
+CP #420 | Wildlife Habitat Planting (IRA) | (Acres),Ac,Kentucky,0
+CP #441 | Micro-irrigation | (Acres),Ac,Kentucky,0
+CP #442 | Sprinkler system  | (Acres),Ac,Kentucky,0
+CP #468 | Lined waterway or outlet  | (Feet),Ft,Kentucky,400
+CP #472 | Access Control  | (Acres),Ac,Kentucky,0
+CP #484 | Mulching (IRA) | (Acres),Ac,Kentucky,0
+CP #490 | Tree/Shrub Site Preparation  | (Acres),Ac,Kentucky,0
+CP #500 | Obstruction Removal | (Acres),Ac,Kentucky,8
+CP #512 | Pasture and Hay Planting  | (Acres),Ac,Kentucky,0
+CP #516 | Livestock Pipeline  | (Feet),Ft,Kentucky,0
+CP #528 | Prescribed Grazing (IRA) | (Acres),Ac,Kentucky,0
+CP #533 | Pumping Plant  | (Num.),Num,Kentucky,0
+CP #550 | Range planting (IRA) | (Acres),Ac,Kentucky,0
+CP #554 | Drainage Water Management | (Acres),Ac,Kentucky,0
+CP #561 | Heavy Use Area Protection  | (Sq. Ft.),sq ft,Kentucky,0
+CP #574 | Spring Development  | (Num.),Num,Kentucky,0
+CP #578 | Stream Crossing  | (Num.),Num,Kentucky,0
+CP #580 | Streambank and Shoreline Protection  | (Feet),Ft,Kentucky,125
+CP #584 | Channel Bed Stabilization  | (Feet),Ft,Kentucky,0
+CP #587 | Structure for Water Control  | (Num.),Num,Kentucky,0
+CP #590 | Nutrient Management (IRA) | (Acres),Ac,Kentucky,0
+CP #595 | Pest Management Conservation System  | (Acres),Ac,Kentucky,0
+CP #612 | Tree/Shrub Establishment (IRA) | (Acres),Ac,Kentucky,0
+CP #614 | Watering Facility  | (Num.),Num,Kentucky,0
+CP #642 | Water Well  | (Num.),Num,Kentucky,0
+CP #643 | Restoration of Rare and Declining Habitats | (Acres),Ac,Kentucky,0
+CP #644 | Wetland Wildlife Habitat Management  | (Acres),Ac,Kentucky,0
+CP #646 | Shallow Water Development and Management  | (Acres),Ac,Kentucky,0
+CP #649 | Structures for Wildlife  | (Num.),Num,Kentucky,45
+CP #657 | Wetland Restoration (IRA) | (Acres),Ac,Kentucky,0
+CP #658 | Wetland Creation  | (Acres),Ac,Kentucky,0
+CP #659 | Wetland Enhancement  | (Acres),Ac,Kentucky,0
+CP #666 | Forest Stand Improvement (IRA) | (Acres),Ac,Kentucky,0

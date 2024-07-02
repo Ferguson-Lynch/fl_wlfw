@@ -1,0 +1,12 @@
+name: DemoTest_GCT
+title: DemoTest_GCT
+username: landscape-partnership
+account: landscape-partnership
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11559616
+bundleId: 8403059
+url: https://landscape-partnership.shinyapps.io/DemoTest_GCT/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
