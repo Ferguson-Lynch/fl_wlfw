@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+## <<<<<<< HEAD
 ## demo Fed project data
 
 ## READ OPTIONS:
@@ -154,6 +154,7 @@ server<-function(input, output, session) {
     dats<-as.data.frame(data.table(dat)[, list(totals=sum(VALUE, na.rm=T)), 
                                         by=list(type, UNIT)])
     
+
     options(scipen = 999)
     if(1==2){
     datsprop<-as.data.frame(data.table(dats)[,  percents := round(totals / sum( totals, na.rm=T ) * 100, 1)   , 
@@ -526,7 +527,7 @@ shinyApp(ui, server)
 
 
 
-=======
+# =======
 ## demo Fed project data
 
 ## READ OPTIONS:
