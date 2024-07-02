@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 .Ruserdata
+landowner-tool/node_modules/*
