@@ -17,7 +17,12 @@ piepol<-"pie"  #put "pie" or "polar"
 #libraries 
 
 library(shiny)
+library(leafem)
+library(sf)
+library(stringr)
+library(ggplot2)
 library(shinyWidgets)
+library(leaflet)
 library(shinyBS)
 library(data.table)
 #library(DT)
@@ -78,7 +83,7 @@ fluidRow(
   )),
 
   
-  bsModal(id="mapmodal", trigger = NULL, size="large",
+ bsModal(id="mapmodal", trigger = NULL, size="large",
          uiOutput("modalheader"),
           leafletOutput("map")
   )
@@ -176,7 +181,7 @@ server<-function(input, output, session) {
                           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), 
                           margin = list(l = 0, r = 0, t = 0, b = 0)) #%>% 
       
-      #event_register("plotly_hover")  
+      event_register("plotly_hover")  
     
     fig
     
