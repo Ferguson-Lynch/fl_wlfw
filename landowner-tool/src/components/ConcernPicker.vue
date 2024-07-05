@@ -81,7 +81,9 @@ export default {
   methods: {
     getConcernString() {
       store.checkedConcerns = this.checkedConcerns;
-      return encodeURIComponent(this.checkedConcerns);
+      // Concerns may have commas in their name, which should be escaped for the URL
+      const concernURLString = this.checkedConcerns.join(':');
+      return encodeURIComponent(concernURLString);
     },
     toggleAll(categoryName) {
       if (!this.categoryToggleStates[categoryName]) {

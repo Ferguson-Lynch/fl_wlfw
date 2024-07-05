@@ -10,9 +10,9 @@ function concernsByCategoryFromCsvObj(jsonObj) {
   const concernsByCategory = {};
   for (const line of jsonObj) {
     if (concernsByCategory[line.category]) {
-      concernsByCategory[line.category].push(line.concern);
+      concernsByCategory[line.category].push(strip(line.concern));
     } else {
-      concernsByCategory[line.category] = [line.concern];
+      concernsByCategory[line.category] = [strip(line.concern)];
     }
   }
   return concernsByCategory;
