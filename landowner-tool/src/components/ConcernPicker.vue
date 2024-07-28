@@ -4,13 +4,28 @@
   </div>
   <div class="container">
     <form>
-      <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
-        <input class="form-control" id="location">
-      </div>
-      <div class="mb-3">
-        <label for="role" class="form-label">Your Role</label>
-        <input class="form-control" id="role">
+      <div class="container-md">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input class="form-control" id="location">
+        </div>
+        <div class="mb-3">
+          <label for="organization" class="form-label">Organization</label>
+          <input class="form-control" id="organization">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Role</label>
+          <select class="form-select" aria-label="role">
+            <option selected>Select your role</option>
+            <option value="landowner">Landowner</option>
+            <option value="biologist">Biologist</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
       </div>
       <masonry :cols="3">
         <div v-for="(value, key) in concernsByCategory" :key="key">

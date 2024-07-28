@@ -24,7 +24,6 @@ function strip(practice) {
 }
 
 function parseConservationPracticeName(line) {
-  console.log(line);
   return line.split(' | ')[1].trim();
 }
 
@@ -62,7 +61,6 @@ export default {
           });
         });
       let practiceDescriptions = {}
-      console.log(descriptionLines)
       for (const line of descriptionLines) {
         practiceDescriptions[parseConservationPracticeName(line['Conservation Practice'])] = line['Description'];
       }

@@ -1,22 +1,24 @@
 <template>
-  <div class='container'>
-    <h3 class='text-center'>Which conservation practices help resource concerns that you are interested in?</h3>
+  <div class="container">
+    <h2 class="text-center">NRCS Conservation Practices that Address Your Resource Concerns</h2>
     <p><b>How to Interpret This Graph:</b> This graph visualizes overlap and patterns in the effectiveness of certain
       conservation practices. The vertical left-hand column lists out conservation practices used by NRCS and the top
       horizontal row lists resource concerns you selected on the previous page. The numbers in the graph indicate the
       severity of the impact as shown in the effect score key above the graph. This data comes from USDA’s Conservation
       Practice Physical Effects (CPPE) scores.</p>
   </div>
-  <div id='heatmap'></div>
+  <div class="container-fluid" id="heatmap"></div>
 </template>
 
 <script>
 import * as d3 from 'd3';
 
-const CHART_MARGIN = { top: 80, right: 25, bottom: 30, left: 330 };
+//const CHART_MARGIN = { top: 80, right: 25, bottom: 30, left: 330 };
 const CHART_HEIGHT = 850;
-// Space for the x-axis labels (concern names)
-let X_LABEL_OFFSET = 100;
+// Space for the top labels (concern names)
+let TOP_LABEL_OFFSET = 100;
+// Space for the side labels (cosnervation names)
+let SIDE_LABEL_OFFSET = 330;
 
 export default {
   Name: 'ConservationPracticeExplorer',
@@ -24,7 +26,6 @@ export default {
   data() {
     return {
       relevantPracticeConcernPairs: [],
-      chartWidth: 1100,
     }
   },
   watch: {
@@ -45,9 +46,7 @@ export default {
   },
   methods: {
     loadHeatmap() {
-      console.log(this.$route.query.concerns);
       const chosenConcerns = this.$route.query.concerns.split(':');
-      console.log(chosenConcerns);
       this.filterPracticesByChosenConcerns(this.practiceConcernPairs, chosenConcerns);
       this.createHeatmap();
     },
@@ -64,25 +63,25 @@ export default {
           allRelevantConservationPractices.has(pair['conservation_practice'])));
     },
     createHeatmap() {
-      this.chartWidth = window.innerWidth;
+      this.chartWidth = document.getElementById('heatmap').offsetWidth;
       let svg = this.initializeHeatmap();
       let conservationPractices = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.conservation_practice; })
       let concerns = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.concern; })
 
       // Add x axis
       let x = d3.scaleBand()
-        .range([0, this.chartWidth])
+        .range([0, this.chartWidth - SIDE_LABEL_OFFSET])
         .domain(concerns)
         .padding(0.05);
 
       let xAxis = d3.axisTop(x).tickSize(0).scale(x);
-      let axisObj = svg.append('g')
-        .attr('y', X_LABEL_OFFSET)
+      let xAxisObj = svg.append('g')
+        .attr('y', TOP_LABEL_OFFSET)
         .attr('class', 'x axis')
         .style('font-size', 15)
         .call(xAxis);
-      axisObj.select('.domain').remove();
-      axisObj.selectAll('.tick text')
+      xAxisObj.select('.domain').remove();
+      xAxisObj.selectAll('.tick text')
         .call(wrapText, x.bandwidth());
 
       // Add y axis 
@@ -90,10 +89,20 @@ export default {
         .range([CHART_HEIGHT, 0])
         .domain(conservationPractices)
         .padding(0.05);
-      svg.append('g')
+      let yAxisObj = svg.append('g')
         .style('font-size', 15)
-        .call(d3.axisLeft(y).tickSize(0))
-        .select('.domain').remove()
+        .call(d3.axisLeft(y).tickSize(0));
+
+      yAxisObj.select('.domain').remove();
+      console.log(yAxisObj.selectAll('.tick text'));
+      //.forEach(function (d) {
+      //let test = d3.select(d).data();//get the data asociated with y axis
+      //console.log(test);
+      //  d3.select(d).on("mouseover", () => { console.log("mouseover tick") })
+      //    .on("mouseleave", () => { console.log("mouseleave tick") });
+      //})
+
+
 
       var colorScale = d3.scaleLinear()
         .domain([-2, 1, 0, 1, 2, 3, 4, 5])
@@ -108,11 +117,11 @@ export default {
       // append the svg object to the body of the page
       let svg = d3.select('#heatmap')
         .append('svg')
-        .attr('width', this.chartWidth + CHART_MARGIN.left + CHART_MARGIN.right)
-        .attr('height', CHART_HEIGHT + CHART_MARGIN.top + CHART_MARGIN.bottom)
+        .attr('width', this.chartWidth)
+        .attr('height', CHART_HEIGHT + TOP_LABEL_OFFSET)
         .append('g')
         .attr('transform',
-          'translate(' + CHART_MARGIN.left + ',' + CHART_MARGIN.top + ')');
+          'translate(' + SIDE_LABEL_OFFSET + ',' + TOP_LABEL_OFFSET + ')');
       return svg;
     },
     addValues(svg, x, y, colorScale) {
@@ -139,9 +148,10 @@ export default {
         .attr('dy', 1)
         .attr('text-anchor', 'middle')
         .style('alignment-baseline', 'middle')
-        .attr('fill', d => d.value > 1 ? 'white' : 'black')
+        .attr('fill', d => valueToTextColor(d.value))
         .attr('font-family', 'sans-serif')
         .text((d) => d.value);
+
     },
     addLegend(svg, colorScale) {
       let keys = [-2, -1, 0, 1, 2, 3, 4, 5]
@@ -167,7 +177,7 @@ export default {
         .attr('x', function (d, i) { return + i * (legendBoxWidth + 5) + legendBoxWidth / 2 })
         .attr('y', -legendVerticalOffset + legendBoxHeight / 2)
         .attr('dy', 1)
-        .attr('fill', d => d > 1 ? 'white' : 'black')
+        .attr('fill', d => valueToTextColor(d))
         // make into function
         .text(function (d) { return d })
         .attr('text-anchor', 'middle')
@@ -202,6 +212,12 @@ export default {
         .style('alignment-baseline', 'middle')
     }
   }
+}
+
+// Choosing a text color that gives good contrast with the color associated
+// with that value
+function valueToTextColor(value) {
+  return (value == 1 || value == 0) ? 'black' : 'white'
 }
 
 // Copyright 2019–2020 Observable, Inc.
