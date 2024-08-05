@@ -7,18 +7,22 @@
       severity of the impact as shown in the effect score key above the graph. This data comes from USDA’s Conservation
       Practice Physical Effects (CPPE) scores.</p>
   </div>
-  <div class="container-fluid" id="heatmap"></div>
+  <div>
+    <div id="heatmap-legend"></div>
+    <div id="heatmap-sidebar"></div>
+    <div class="container-fluid" id="heatmap"></div>
+  </div>
 </template>
 
 <script>
 import * as d3 from 'd3';
 
-//const CHART_MARGIN = { top: 80, right: 25, bottom: 30, left: 330 };
-const CHART_HEIGHT = 850;
 // Space for the top labels (concern names)
-let TOP_LABEL_OFFSET = 100;
+let TOP_LABEL_OFFSET = 190;
 // Space for the side labels (cosnervation names)
 let SIDE_LABEL_OFFSET = 330;
+let HEATMAP_COLUMN_WIDTH = 100;
+let HEATMAP_ROW_HEIGHT = 30;
 
 export default {
   Name: 'ConservationPracticeExplorer',
@@ -36,7 +40,8 @@ export default {
         if (practiceConcernPairs.length > 0) {
           // Wait until concerns are available from the router
           this.$router.isReady().then(() => {
-            this.loadHeatmap();
+            const chosenConcerns = this.$route.query.concerns.split(':');
+            this.loadPage(chosenConcerns);
           });
         }
       },
@@ -45,39 +50,47 @@ export default {
     },
   },
   methods: {
-    loadHeatmap() {
-      const chosenConcerns = this.$route.query.concerns.split(':');
-      this.filterPracticesByChosenConcerns(this.practiceConcernPairs, chosenConcerns);
-      this.createHeatmap();
+    loadPage(chosenConcerns) {
+      // All conservation practices related to the chosen concerns
+      const relevantConservationPractices = this.findRelevantConservationPractices(this.practiceConcernPairs, chosenConcerns);
+      // Paired by the concerns they're related to
+      this.relevantPracticeConcernPairs = this.filterPracticesByChosenConcerns(this.practiceConcernPairs, chosenConcerns, relevantConservationPractices);
+
+      const heatmapWidth = HEATMAP_COLUMN_WIDTH * chosenConcerns.length;
+      console.log('relevant conservation practices size', relevantConservationPractices.size);
+      const heatmapHeight = HEATMAP_ROW_HEIGHT * relevantConservationPractices.size;
+      this.createHeatmap(heatmapWidth, heatmapHeight);
     },
-    filterPracticesByChosenConcerns(practiceConcernPairs, chosenConcerns) {
-      const allRelevantConservationPractices = new Set();
-      for (const pair of this.practiceConcernPairs) {
+    findRelevantConservationPractices(practiceConcernPairs, chosenConcerns) {
+      const relevantConservationPractices = new Set();
+      for (const pair of practiceConcernPairs) {
         if (chosenConcerns.includes(pair['concern']) && pair['value'] != 0) {
-          allRelevantConservationPractices.add(pair['conservation_practice']);
+          relevantConservationPractices.add(pair['conservation_practice']);
         }
       }
-      this.relevantPracticeConcernPairs =
-        practiceConcernPairs.filter((pair) =>
-        (chosenConcerns.includes(pair['concern']) &&
-          allRelevantConservationPractices.has(pair['conservation_practice'])));
+      return relevantConservationPractices;
     },
-    createHeatmap() {
-      this.chartWidth = document.getElementById('heatmap').offsetWidth;
-      let svg = this.initializeHeatmap();
+    filterPracticesByChosenConcerns(practiceConcernPairs, chosenConcerns, relevantConservationPractices) {
+      return practiceConcernPairs.filter((pair) =>
+      (chosenConcerns.includes(pair['concern']) &&
+        relevantConservationPractices.has(pair['conservation_practice'])));
+    },
+    createHeatmap(heatmapWidth, heatmapHeight) {
+      let svg = this.initializeHeatmap(heatmapWidth, heatmapHeight);
       let conservationPractices = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.conservation_practice; })
+      console.log(conservationPractices)
       let concerns = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.concern; })
 
       // Add x axis
       let x = d3.scaleBand()
-        .range([0, this.chartWidth - SIDE_LABEL_OFFSET])
+        .range([SIDE_LABEL_OFFSET, heatmapWidth])
         .domain(concerns)
         .padding(0.05);
 
       let xAxis = d3.axisTop(x).tickSize(0).scale(x);
       let xAxisObj = svg.append('g')
-        .attr('y', TOP_LABEL_OFFSET)
         .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + TOP_LABEL_OFFSET + ')')
         .style('font-size', 15)
         .call(xAxis);
       xAxisObj.select('.domain').remove();
@@ -86,11 +99,19 @@ export default {
 
       // Add y axis 
       let y = d3.scaleBand()
-        .range([CHART_HEIGHT, 0])
+        .range([0, heatmapHeight])
         .domain(conservationPractices)
         .padding(0.05);
-      let yAxisObj = svg.append('g')
+      // The sidebar is inserted into a different div so that it can remain stationary while 
+      // the rest of the chart scrolls
+      let sidebarSvg = d3.select('#heatmap-sidebar')
+        .append('svg')
+        .attr('width', SIDE_LABEL_OFFSET)
+        .attr('height', heatmapHeight)
+
+      let yAxisObj = sidebarSvg.append('g')
         .style('font-size', 15)
+        .attr('transform', 'translate(' + SIDE_LABEL_OFFSET + ',' + TOP_LABEL_OFFSET + ')')
         .call(d3.axisLeft(y).tickSize(0));
 
       yAxisObj.select('.domain').remove();
@@ -109,19 +130,19 @@ export default {
         .range(['#ad1313', '#d65151', '#f2efee', '#cde3ee', '#8fc2dc', '#4b94c4', '#2265a3', '#053061'])
 
       this.addValues(svg, x, y, colorScale);
-      this.addLegend(svg, colorScale);
+      this.addLegend(colorScale);
 
     },
-    initializeHeatmap() {
+    initializeHeatmap(heatmapWidth, heatmapHeight) {
       // set the dimensions and margins of the graph
       // append the svg object to the body of the page
       let svg = d3.select('#heatmap')
         .append('svg')
-        .attr('width', this.chartWidth)
-        .attr('height', CHART_HEIGHT + TOP_LABEL_OFFSET)
+        .attr('width', heatmapWidth)
+        .attr('height', heatmapHeight)
         .append('g')
-        .attr('transform',
-          'translate(' + SIDE_LABEL_OFFSET + ',' + TOP_LABEL_OFFSET + ')');
+      //.attr('transform',
+      //  'translate(' + SIDE_LABEL_OFFSET + ',' + 0 + ')');
       return svg;
     },
     addValues(svg, x, y, colorScale) {
@@ -131,7 +152,7 @@ export default {
 
       squares.append('rect')
         .attr('x', function (d) { return x(d.concern) })
-        .attr('y', function (d) { return y(d.conservation_practice) })
+        .attr('y', function (d) { return y(d.conservation_practice) + TOP_LABEL_OFFSET })
         .attr('rx', 4)
         .attr('ry', 4)
         .attr('width', x.bandwidth())
@@ -143,7 +164,7 @@ export default {
 
       squares.insert('text')
         .attr('x', function (d) { return x(d.concern) + x.bandwidth() / 2 })
-        .attr('y', function (d) { return y(d.conservation_practice) + y.bandwidth() / 2 })
+        .attr('y', function (d) { return y(d.conservation_practice) + TOP_LABEL_OFFSET + y.bandwidth() / 2 })
         // Text looks slightly out of alignment, better when adjusted down by 1 px
         .attr('dy', 1)
         .attr('text-anchor', 'middle')
@@ -153,19 +174,29 @@ export default {
         .text((d) => d.value);
 
     },
-    addLegend(svg, colorScale) {
+    addLegend(colorScale) {
       let keys = [-2, -1, 0, 1, 2, 3, 4, 5]
 
       let legendBoxWidth = 40
       let legendBoxHeight = 25
-      let legendVerticalOffset = 70
+      let legendVerticalOffset = 20
+      let legendHorizontalOffset = 330
+
+
+      let svg = d3.select('#heatmap-legend')
+        .append('svg')
+        .attr('width', legendHorizontalOffset + keys.length * (legendBoxWidth + 5))
+        .attr('height', 100)
+        .attr('transform', 'translate(' + legendHorizontalOffset + ', 0)')
+        .append('g')
+
 
       svg.selectAll('legend-boxes')
         .data(keys)
         .enter()
         .append('rect')
-        .attr('x', function (d, i) { return i * (legendBoxWidth + 5) })
-        .attr('y', -legendVerticalOffset)
+        .attr('x', function (d, i) { return legendHorizontalOffset + i * (legendBoxWidth + 5) })
+        .attr('y', legendVerticalOffset)
         .attr('width', legendBoxWidth)
         .attr('height', legendBoxHeight)
         .style('fill', function (d) { return colorScale(d) })
@@ -174,8 +205,8 @@ export default {
         .data(keys)
         .enter()
         .append('text')
-        .attr('x', function (d, i) { return + i * (legendBoxWidth + 5) + legendBoxWidth / 2 })
-        .attr('y', -legendVerticalOffset + legendBoxHeight / 2)
+        .attr('x', function (d, i) { return + legendHorizontalOffset + i * (legendBoxWidth + 5) + legendBoxWidth / 2 })
+        .attr('y', legendVerticalOffset + legendBoxHeight / 2)
         .attr('dy', 1)
         .attr('fill', d => valueToTextColor(d))
         // make into function
@@ -184,29 +215,29 @@ export default {
         .style('alignment-baseline', 'middle')
 
       svg.append('text')
-        .attr('x', -8)
-        .attr('y', -legendVerticalOffset + legendBoxHeight / 2 - 10)
+        .attr('x', legendHorizontalOffset - 8)
+        .attr('y', legendVerticalOffset + legendBoxHeight / 2 - 10)
         .text('Conservation practice')
         .attr('text-anchor', 'end')
         .style('alignment-baseline', 'middle')
 
       svg.append('text')
-        .attr('x', -8)
-        .attr('y', -legendVerticalOffset + legendBoxHeight / 2 + 10)
+        .attr('x', legendHorizontalOffset - 8)
+        .attr('y', legendVerticalOffset + legendBoxHeight / 2 + 10)
         .text('has detrimental effect')
         .attr('text-anchor', 'end')
         .style('alignment-baseline', 'middle')
 
       svg.append('text')
-        .attr('x', 8 * (legendBoxWidth + 5))
-        .attr('y', -legendVerticalOffset + legendBoxHeight / 2 - 10)
+        .attr('x', legendHorizontalOffset + 8 * (legendBoxWidth + 5))
+        .attr('y', legendVerticalOffset + legendBoxHeight / 2 - 10)
         .text('Conservation practice')
         .attr('text-anchor', 'start')
         .style('alignment-baseline', 'middle')
 
       svg.append('text')
-        .attr('x', 8 * (legendBoxWidth + 5))
-        .attr('y', -legendVerticalOffset + legendBoxHeight / 2 + 10)
+        .attr('x', legendHorizontalOffset + 8 * (legendBoxWidth + 5))
+        .attr('y', legendVerticalOffset + legendBoxHeight / 2 + 10)
         .text('has protective effect')
         .attr('text-anchor', 'start')
         .style('alignment-baseline', 'middle')
@@ -275,4 +306,18 @@ function wrapText(text, width) {
 </script>
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+#heatmap {
+  overflow-x: scroll;
+}
+
+#heatmap-sidebar {
+  position: absolute;
+  background: white;
+  padding-right: 10px;
+}
+
+#heatmap-legend {
+  position: absolute;
+}
+</style>
