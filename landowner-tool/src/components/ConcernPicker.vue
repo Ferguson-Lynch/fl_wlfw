@@ -62,6 +62,8 @@ import { intersection } from './util.js';
 export default {
   name: 'ConcernPicker',
   props: ['concernsByCategory'],
+  // Prevents all properties from being passed through router-view, only those named above 
+  inheritAttrs: false,
   data() {
     return {
       checkedConcerns: store.checkedConcerns,
@@ -70,10 +72,24 @@ export default {
       categoryToggleStates: {},
     }
   },
+  mounted() {
+    // Update from store when navigating backwards to this page
+    this.updateTopLevelCheckmarks();
+  },
   watch: {
     // Indeterminate checkbox state cannot be set via HTML. For consistency, 
     // setting all checkbox state here.
     checkedConcerns() {
+      this.updateTopLevelCheckmarks();
+    },
+  },
+  methods: {
+    getConcernString() {
+      store.checkedConcerns = this.checkedConcerns;
+      const concernURLString = this.checkedConcerns.join(':');
+      return encodeURIComponent(concernURLString);
+    },
+    updateTopLevelCheckmarks() {
       for (const category in this.concernsByCategory) {
         const concernsIntersection = intersection(this.checkedConcerns, this.concernsByCategory[category]);
         const checkboxElement = document.getElementById(category + '-checkbox');
@@ -87,18 +103,10 @@ export default {
           checkboxElement.indeterminate = false;
         } else {
           this.categoryToggleStates[category] = SOME_CHECKED;
-          checkboxElement.checked = false;
           checkboxElement.indeterminate = true;
+          checkboxElement.checked = false;
         }
       }
-    }
-  },
-  methods: {
-    getConcernString() {
-      store.checkedConcerns = this.checkedConcerns;
-      // Concerns may have commas in their name, which should be escaped for the URL
-      const concernURLString = this.checkedConcerns.join(':');
-      return encodeURIComponent(concernURLString);
     },
     toggleAll(categoryName) {
       if (!this.categoryToggleStates[categoryName]) {

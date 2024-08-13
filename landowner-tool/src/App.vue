@@ -6,6 +6,14 @@
 <script>
 import Papa from 'papaparse';
 
+// Creates a dictionary from the CSV associating concerns and category
+//
+// Format of input object:
+// {category: "Soil & Land", concern: "Wind Erosion"}, 
+// {category: "Soil & Land", concern: "Classic Gully Erosion"} 
+//
+// Return value:
+// {"Soil & Land": ["Wind Erosion", "Classic Gully Erosion"]}
 function concernsByCategoryFromCsvObj(jsonObj) {
   const concernsByCategory = {};
   for (const line of jsonObj) {
@@ -18,13 +26,23 @@ function concernsByCategoryFromCsvObj(jsonObj) {
   return concernsByCategory;
 }
 
-function strip(practice) {
-  return practice.replace(/["]+/g, '').trim();
-
+function strip(str) {
+  return str.replace(/["]+/g, '').trim();
 }
 
-function parseConservationPracticeName(line) {
-  return line.split(' | ')[1].trim();
+async function loadCsvWithHeader(filePath) {
+  let csvLines;
+  await fetch(filePath)
+    .then(res => res.text())
+    .then(csv => {
+      Papa.parse(csv, {
+        header: true,
+        complete: function (results) {
+          csvLines = results.data;
+        }
+      });
+    });
+  return csvLines;
 }
 
 export default {
@@ -49,75 +67,25 @@ export default {
   },
   methods: {
     async loadDescriptions() {
-      let descriptionLines;
-      await fetch('data/conservation_practice_descriptions.csv')
-        .then(res => res.text())
-        .then(csv => {
-          Papa.parse(csv, {
-            header: true,
-            complete: function (results) {
-              descriptionLines = results.data;
-            }
-          });
-        });
-      let practiceDescriptions = {}
+      let practiceDescriptions = {};
+      let descriptionLines = await loadCsvWithHeader('data/conservation_practice_descriptions.csv');
+      // TODO: may not need this line once data is cleaned up
       for (const line of descriptionLines) {
-        practiceDescriptions[parseConservationPracticeName(line['Conservation Practice'])] = line['Description'];
+        practiceDescriptions[line['Conservation Practice']] = line['Description'];
       }
       this.practiceDescriptions = practiceDescriptions;
     },
     async loadPractices() {
-      let csvLines;
-      await fetch('data/conservation_practice_data.csv')
-        .then(res => res.text())
-        .then(csv => {
-          Papa.parse(csv, {
-            header: true,
-            complete: function (results) {
-              csvLines = results.data;
-            }
-          });
-        });
-      let practiceConcernPairs = [];
-      for (const line of csvLines) {
-        // Each key is a column in the CSV
-        for (const colKey in line) {
-          // Index column
-          if (colKey == 'Conservation Practice') {
-            continue;
-          }
-          practiceConcernPairs.push({
-            conservation_practice: parseConservationPracticeName(line['Conservation Practice']),
-            concern: strip(colKey),
-            value: line[colKey] || 0
-          })
-        }
-      }
-      this.practiceConcernPairs = practiceConcernPairs;
+      this.practiceConcernPairs = await loadCsvWithHeader('data/conservation_practices_long.csv');
     },
     async loadConcerns() {
-      const concernDataPath = 'data/concerns_by_category.csv';
-      let concernsByCategory;
-      await fetch(concernDataPath)
-        .then(res => res.text())
-        .then(csv => {
-          Papa.parse(csv, {
-            header: true,
-            complete: function (results) {
-              concernsByCategory = concernsByCategoryFromCsvObj(results.data);
-            }
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          throw new Error(`Data at ${concernDataPath} not formatted as expected. `
-            + ` Should be a csv file with headers 'concern' and 'category'`)
-        });
-      this.concernsByCategory = concernsByCategory;
-
+      let concernsByCategoryLines = await loadCsvWithHeader('data/concerns_by_category.csv');
+      this.concernsByCategory = concernsByCategoryFromCsvObj(concernsByCategoryLines);
     }
   },
   mounted() {
+    // Loading the data at the app-level to avoid extra loading if the user goes back
+    // and forth between the concern picker and explorer, which is an expected use.
     this.loadDescriptions();
     this.loadPractices();
     this.loadConcerns();

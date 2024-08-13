@@ -7,26 +7,46 @@
       severity of the impact as shown in the effect score key above the graph. This data comes from USDA’s Conservation
       Practice Physical Effects (CPPE) scores.</p>
   </div>
-  <div>
+  <div class="container">
     <div id="heatmap-legend"></div>
     <div id="heatmap-sidebar"></div>
-    <div class="container-fluid" id="heatmap"></div>
+    <div id="heatmap"></div>
+    <!--<button @click="exportToPdf"></button>-->
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3';
+import jsPDF from 'jspdf';
 
 // Space for the top labels (concern names)
-let TOP_LABEL_OFFSET = 190;
+let TOP_LABEL_OFFSET = 110;
 // Space for the side labels (cosnervation names)
 let SIDE_LABEL_OFFSET = 330;
-let HEATMAP_COLUMN_WIDTH = 100;
+let HEATMAP_COLUMN_WIDTH = 110;
 let HEATMAP_ROW_HEIGHT = 30;
+
+function findRelevantConservationPractices(practiceConcernPairs, chosenConcerns) {
+  const relevantConservationPractices = new Set();
+  for (const pair of practiceConcernPairs) {
+    if (chosenConcerns.includes(pair['concern']) && pair['value'] != 0) {
+      relevantConservationPractices.add(pair['conservation_practice']);
+    }
+  }
+  return relevantConservationPractices;
+}
+function filterPracticesByChosenConcerns(practiceConcernPairs, chosenConcerns, relevantConservationPractices) {
+  return practiceConcernPairs.filter((pair) =>
+  (chosenConcerns.includes(pair['concern']) &&
+    relevantConservationPractices.has(pair['conservation_practice'])));
+}
+
 
 export default {
   Name: 'ConservationPracticeExplorer',
   props: ['practiceConcernPairs', 'practiceDescriptions'],
+  // Prevents all properties from being passed through router-view, only those named above 
+  inheritAttrs: false,
   data() {
     return {
       relevantPracticeConcernPairs: [],
@@ -52,41 +72,28 @@ export default {
   methods: {
     loadPage(chosenConcerns) {
       // All conservation practices related to the chosen concerns
-      const relevantConservationPractices = this.findRelevantConservationPractices(this.practiceConcernPairs, chosenConcerns);
-      // Paired by the concerns they're related to
-      this.relevantPracticeConcernPairs = this.filterPracticesByChosenConcerns(this.practiceConcernPairs, chosenConcerns, relevantConservationPractices);
+      const relevantConservationPractices = findRelevantConservationPractices(this.practiceConcernPairs, chosenConcerns);
+      // Paired to the concerns they're related to
+      this.relevantPracticeConcernPairs = filterPracticesByChosenConcerns(this.practiceConcernPairs, chosenConcerns, relevantConservationPractices);
 
-      const heatmapWidth = HEATMAP_COLUMN_WIDTH * chosenConcerns.length;
-      console.log('relevant conservation practices size', relevantConservationPractices.size);
+      let heatmapWidth = HEATMAP_COLUMN_WIDTH * chosenConcerns.length;
+      // Increase width to a minimum if there are a very small number of columns
+      if (heatmapWidth < 300) {
+        heatmapWidth = 350;
+      }
       const heatmapHeight = HEATMAP_ROW_HEIGHT * relevantConservationPractices.size;
       this.createHeatmap(heatmapWidth, heatmapHeight);
     },
-    findRelevantConservationPractices(practiceConcernPairs, chosenConcerns) {
-      const relevantConservationPractices = new Set();
-      for (const pair of practiceConcernPairs) {
-        if (chosenConcerns.includes(pair['concern']) && pair['value'] != 0) {
-          relevantConservationPractices.add(pair['conservation_practice']);
-        }
-      }
-      return relevantConservationPractices;
-    },
-    filterPracticesByChosenConcerns(practiceConcernPairs, chosenConcerns, relevantConservationPractices) {
-      return practiceConcernPairs.filter((pair) =>
-      (chosenConcerns.includes(pair['concern']) &&
-        relevantConservationPractices.has(pair['conservation_practice'])));
-    },
     createHeatmap(heatmapWidth, heatmapHeight) {
-      let svg = this.initializeHeatmap(heatmapWidth, heatmapHeight);
+      let svg = this.initializeHeatmapSVG(heatmapWidth, heatmapHeight);
       let conservationPractices = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.conservation_practice; })
-      console.log(conservationPractices)
       let concerns = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.concern; })
 
       // Add x axis
       let x = d3.scaleBand()
-        .range([SIDE_LABEL_OFFSET, heatmapWidth])
+        .range([SIDE_LABEL_OFFSET, heatmapWidth + SIDE_LABEL_OFFSET])
         .domain(concerns)
         .padding(0.05);
-
       let xAxis = d3.axisTop(x).tickSize(0).scale(x);
       let xAxisObj = svg.append('g')
         .attr('class', 'x axis')
@@ -107,15 +114,15 @@ export default {
       let sidebarSvg = d3.select('#heatmap-sidebar')
         .append('svg')
         .attr('width', SIDE_LABEL_OFFSET)
-        .attr('height', heatmapHeight)
-
+        .attr('height', heatmapHeight + TOP_LABEL_OFFSET)
       let yAxisObj = sidebarSvg.append('g')
         .style('font-size', 15)
         .attr('transform', 'translate(' + SIDE_LABEL_OFFSET + ',' + TOP_LABEL_OFFSET + ')')
         .call(d3.axisLeft(y).tickSize(0));
-
       yAxisObj.select('.domain').remove();
-      console.log(yAxisObj.selectAll('.tick text'));
+
+      // TODO: Add hoverover descriptions
+      //console.log(yAxisObj.selectAll('.tick text'));
       //.forEach(function (d) {
       //let test = d3.select(d).data();//get the data asociated with y axis
       //console.log(test);
@@ -123,26 +130,18 @@ export default {
       //    .on("mouseleave", () => { console.log("mouseleave tick") });
       //})
 
-
-
       var colorScale = d3.scaleLinear()
         .domain([-2, 1, 0, 1, 2, 3, 4, 5])
         .range(['#ad1313', '#d65151', '#f2efee', '#cde3ee', '#8fc2dc', '#4b94c4', '#2265a3', '#053061'])
-
       this.addValues(svg, x, y, colorScale);
       this.addLegend(colorScale);
-
     },
-    initializeHeatmap(heatmapWidth, heatmapHeight) {
-      // set the dimensions and margins of the graph
-      // append the svg object to the body of the page
+    initializeHeatmapSVG(heatmapWidth, heatmapHeight) {
       let svg = d3.select('#heatmap')
         .append('svg')
-        .attr('width', heatmapWidth)
-        .attr('height', heatmapHeight)
+        .attr('width', heatmapWidth + SIDE_LABEL_OFFSET)
+        .attr('height', heatmapHeight + TOP_LABEL_OFFSET)
         .append('g')
-      //.attr('transform',
-      //  'translate(' + SIDE_LABEL_OFFSET + ',' + 0 + ')');
       return svg;
     },
     addValues(svg, x, y, colorScale) {
@@ -175,21 +174,22 @@ export default {
 
     },
     addLegend(colorScale) {
-      let keys = [-2, -1, 0, 1, 2, 3, 4, 5]
+      // All the values that a conservation practice can have aon a concern
+      let keys = [-2, -1, 0, 1, 2, 3, 4, 5];
 
-      let legendBoxWidth = 40
-      let legendBoxHeight = 25
-      let legendVerticalOffset = 20
-      let legendHorizontalOffset = 330
-
+      let legendBoxWidth = 40;
+      let legendBoxHeight = 25;
+      let legendVerticalOffset = 20;
+      let legendHorizontalOffset = 190;
+      let legendWidth = 400;
+      let legendHeight = 65;
 
       let svg = d3.select('#heatmap-legend')
         .append('svg')
-        .attr('width', legendHorizontalOffset + keys.length * (legendBoxWidth + 5))
-        .attr('height', 100)
+        .attr('width', legendWidth + keys.length * (legendBoxWidth + 5))
+        .attr('height', legendHeight)
         .attr('transform', 'translate(' + legendHorizontalOffset + ', 0)')
         .append('g')
-
 
       svg.selectAll('legend-boxes')
         .data(keys)
@@ -241,6 +241,12 @@ export default {
         .text('has protective effect')
         .attr('text-anchor', 'start')
         .style('alignment-baseline', 'middle')
+    },
+    exportToPdf() {
+      const doc = new jsPDF();
+
+      doc.text("hello world!", 10, 10);
+      doc.save("test.pdf");
     }
   }
 }
@@ -318,6 +324,8 @@ function wrapText(text, width) {
 }
 
 #heatmap-legend {
-  position: absolute;
+  display: absolute;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
