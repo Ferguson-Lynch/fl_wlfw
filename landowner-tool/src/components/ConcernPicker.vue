@@ -27,7 +27,7 @@
           </select>
         </div>
       </div>
-      <masonry :cols="3">
+      <masonry :cols="{ default: 3, 700: 2, 400: 1 }">
         <div v-for="(value, key) in concernsByCategory" :key="key">
           <div class="card">
             <div class="card-body">

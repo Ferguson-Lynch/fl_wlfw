@@ -18,6 +18,7 @@
 <script>
 import * as d3 from 'd3';
 import jsPDF from 'jspdf';
+import { sanitizeUrl } from '@braintree/sanitize-url';
 
 // Space for the top labels (concern names)
 let TOP_LABEL_OFFSET = 110;
@@ -35,12 +36,32 @@ function findRelevantConservationPractices(practiceConcernPairs, chosenConcerns)
   }
   return relevantConservationPractices;
 }
+
 function filterPracticesByChosenConcerns(practiceConcernPairs, chosenConcerns, relevantConservationPractices) {
   return practiceConcernPairs.filter((pair) =>
   (chosenConcerns.includes(pair['concern']) &&
     relevantConservationPractices.has(pair['conservation_practice'])));
 }
 
+
+
+function sortByConservationPracticeEffectScores(practiceConcernPairs) {
+  let conservationPracticeCumulativeEffectScores = {};
+  for (const pair of practiceConcernPairs) {
+    if (!(pair['conservation_practice'] in conservationPracticeCumulativeEffectScores)) {
+      conservationPracticeCumulativeEffectScores[pair['conservation_practice']] = 0;
+    }
+    conservationPracticeCumulativeEffectScores[pair['conservation_practice']] += Number(pair['value']);
+  }
+  console.log(conservationPracticeCumulativeEffectScores);
+  // Pairs with conservation practices with a higher cumulative value first
+  practiceConcernPairs.sort(practiceConcernPairCompareFn);
+
+  function practiceConcernPairCompareFn(a, b) {
+    return conservationPracticeCumulativeEffectScores[b['conservation_practice']]
+      - conservationPracticeCumulativeEffectScores[a['conservation_practice']]
+  }
+}
 
 export default {
   Name: 'ConservationPracticeExplorer',
@@ -60,7 +81,8 @@ export default {
         if (practiceConcernPairs.length > 0) {
           // Wait until concerns are available from the router
           this.$router.isReady().then(() => {
-            const chosenConcerns = this.$route.query.concerns.split(':');
+            const sanitizedQueryConcerns = sanitizeUrl(this.$route.query.concerns);
+            const chosenConcerns = sanitizedQueryConcerns.split(':');
             this.loadPage(chosenConcerns);
           });
         }
@@ -86,6 +108,8 @@ export default {
     },
     createHeatmap(heatmapWidth, heatmapHeight) {
       let svg = this.initializeHeatmapSVG(heatmapWidth, heatmapHeight);
+      // Apparently the best way to sort the y axis is to sort the source data
+      sortByConservationPracticeEffectScores(this.relevantPracticeConcernPairs);
       let conservationPractices = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.conservation_practice; })
       let concerns = d3.map(this.relevantPracticeConcernPairs, function (d) { return d.concern; })
 
@@ -245,7 +269,7 @@ export default {
     exportToPdf() {
       const doc = new jsPDF();
 
-      doc.text("hello world!", 10, 10);
+      doc.fromHTML(document.body);
       doc.save("test.pdf");
     }
   }
