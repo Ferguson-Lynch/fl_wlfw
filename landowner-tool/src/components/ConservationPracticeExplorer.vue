@@ -28,7 +28,7 @@ import { sanitizeUrl } from '@braintree/sanitize-url';
 
 // Space for the top labels (concern names)
 let TOP_LABEL_OFFSET = 110;
-// Space for the side labels (cosnervation names)
+// Space for the side labels (conservation names)
 let SIDE_LABEL_OFFSET = 330;
 let HEATMAP_COLUMN_WIDTH = 110;
 let HEATMAP_ROW_HEIGHT = 30;
@@ -151,6 +151,14 @@ export default {
         .call(d3.axisLeft(y).tickSize(0));
       yAxisObj.select('.domain').remove();
 
+      // Strip trailing (IRA) from some rows
+      yAxisObj.selectAll('.tick text').text(function(t){
+        // Using regex selector, find the string "(IRA)"
+        // Replace that with an empty string
+        // Trim remaining trailing whitespace
+        return t.replace(/\(IRA\)$/, '').trim();
+      })
+
       // TODO: Add hoverover descriptions
       //console.log(yAxisObj.selectAll('.tick text'));
       //.forEach(function (d) {
@@ -201,7 +209,7 @@ export default {
         .attr('fill', d => valueToTextColor(d.value))
         .attr('font-family', 'sans-serif')
         .text((d) => d.value);
-
+      
     },
     addLegend(colorScale) {
       // All the values that a conservation practice can have aon a concern
