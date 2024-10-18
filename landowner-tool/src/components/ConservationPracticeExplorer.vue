@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="text-center">NRCS Conservation Practices that Address Your Resource Concerns</h2>
     <p><b>How to Interpret This Graph:</b> This graph visualizes overlap and patterns in the effectiveness of certain
-      conservation practices. The vertical left-hand column lists out conservation practices used by NRCS and the top
+      conservation practices. The vertical left-hand column lists out conservation practices used by NRCS EQIP program and the top
       horizontal row lists resource concerns you selected on the previous page. The numbers in the graph indicate the
       severity of the impact as shown in the effect score key above the graph. This data comes from USDA’s Conservation
       Practice Physical Effects (CPPE) scores.</p>
