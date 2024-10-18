@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <a href="/" class="btn btn-light"><i class="bi bi-arrow-left me-2"></i>Start Over</a>
+  </div>
+  <div class="container">
     <h2 class="text-center">NRCS Conservation Practices that Address Your Resource Concerns</h2>
     <p><b>How to Interpret This Graph:</b> This graph visualizes overlap and patterns in the effectiveness of certain
       conservation practices. The vertical left-hand column lists out conservation practices used by NRCS EQIP program and the top
