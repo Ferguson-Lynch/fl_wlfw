@@ -353,6 +353,7 @@ function wrapText(text, width) {
 <style scoped>
 #heatmap {
   overflow-x: scroll;
+  padding-left: 10px;
 }
 
 #heatmap-sidebar {
