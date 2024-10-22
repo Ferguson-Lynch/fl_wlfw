@@ -5,6 +5,17 @@
 
 <script>
 import Papa from 'papaparse';
+import Analytics from 'analytics';
+import googleAnalytics from '@analytics/google-analytics';
+
+const analytics = Analytics({
+  app: 'landowner-tool',
+  plugins: [
+    googleAnalytics({
+      measurementIds: ['G-FZFFBB18CL']
+    })
+  ]
+})
 
 // Creates a dictionary from the CSV associating concerns and category
 //
@@ -89,6 +100,9 @@ export default {
     this.loadDescriptions();
     this.loadPractices();
     this.loadConcerns();
+
+    // Track a page view
+    analytics.page();
   },
 }
 </script>
