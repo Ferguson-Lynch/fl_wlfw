@@ -11,7 +11,7 @@
       Practice Physical Effects (CPPE) scores.</p>
   </div>
   <div class="container">
-    <p><a href="https://www.landscapepartnership.org/networks/working-lands-for-wildlife/landscapes-wildlife/landscapes/aquatics/maps-and-data/aquatic-framework-products/aquacorridors-conservation-encyclopedia" class="btn btn-primary">Learn about these conservation practices and concerns in the AquaCorridors: Conservation Encyclopedia</a></p>
+    <p><a href="https://www.landscapepartnership.org/networks/working-lands-for-wildlife/landscapes-wildlife/landscapes/aquatics/maps-and-data/aquatic-framework-products/aquacorridors-conservation-encyclopedia" class="btn btn-primary">Learn about these conservation practices and concerns in the AquaCorridors Handbook</a></p>
   </div>
   <div class="container">
     <div id="heatmap-legend"></div>
