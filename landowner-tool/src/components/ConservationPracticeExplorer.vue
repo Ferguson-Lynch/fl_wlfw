@@ -25,6 +25,7 @@
 import * as d3 from 'd3';
 import jsPDF from 'jspdf';
 import { sanitizeUrl } from '@braintree/sanitize-url';
+import analyticsInstance from '../analyticsInstance.js';
 
 // Space for the top labels (concern names)
 let TOP_LABEL_OFFSET = 110;
@@ -78,6 +79,9 @@ export default {
     return {
       relevantPracticeConcernPairs: [],
     }
+  },
+  mounted() {
+    analyticsInstance.track('ConservationPracticeExplorerDidLoad')
   },
   watch: {
     practiceConcernPairs: {

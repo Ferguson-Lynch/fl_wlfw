@@ -59,6 +59,8 @@ export const NONE_CHECKED = 'none-checked';
 
 import { intersection } from './util.js';
 
+import analyticsInstance from '../analyticsInstance.js';
+
 export default {
   name: 'ConcernPicker',
   props: ['concernsByCategory'],
@@ -75,6 +77,7 @@ export default {
   mounted() {
     // Update from store when navigating backwards to this page
     this.updateTopLevelCheckmarks();
+    analyticsInstance.track('ConcernPickerDidLoad')
   },
   watch: {
     // Indeterminate checkbox state cannot be set via HTML. For consistency, 
