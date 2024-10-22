@@ -10,7 +10,7 @@
           <input class="form-control" id="name">
         </div>
         <div class="mb-3">
-          <label for="location" class="form-label">Location</label>
+          <label for="location" class="form-label">Location (state and/or specific region)</label>
           <input class="form-control" id="location">
         </div>
         <div class="mb-3">
