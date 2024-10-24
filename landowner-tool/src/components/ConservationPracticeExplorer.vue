@@ -93,6 +93,9 @@ export default {
           this.$router.isReady().then(() => {
             const sanitizedQueryConcerns = sanitizeUrl(this.$route.query.concerns);
             const chosenConcerns = sanitizedQueryConcerns.split(':');
+
+            // Log data to GA4
+            // Should rewrite to log the same object to DynamoDB
             analyticsInstance.track('conservationPracticesDisplayed', {
               name: this.$route.query.name,
               location: this.$route.query.location,
