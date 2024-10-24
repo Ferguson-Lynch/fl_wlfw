@@ -7,6 +7,7 @@ const analyticsInstance = Analytics({
   plugins: [
     googleAnalytics({
       measurementIds: ['G-FZFFBB18CL']
+      // ,debug: true
     })
   ]
 })
