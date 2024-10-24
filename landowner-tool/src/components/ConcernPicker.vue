@@ -20,7 +20,7 @@
         <div class="mb-3">
           <label class="form-label">Role</label>
           <select class="form-select" aria-label="role">
-            <option selected>Select your role</option>
+            <option selected disabled>Select your role</option>
             <option value="landowner">Landowner</option>
             <option value="biologist">Biologist</option>
             <option value="other">Other</option>
