@@ -7,19 +7,19 @@
       <div class="container-md">
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input class="form-control" id="name">
+          <input v-model="name" class="form-control" id="name">
         </div>
         <div class="mb-3">
           <label for="location" class="form-label">Location (state and/or specific region)</label>
-          <input class="form-control" id="location">
+          <input v-model="location" class="form-control" id="location">
         </div>
         <div class="mb-3">
           <label for="organization" class="form-label">Organization</label>
-          <input class="form-control" id="organization">
+          <input v-model="organization" class="form-control" id="organization">
         </div>
         <div class="mb-3">
           <label class="form-label">Role</label>
-          <select class="form-select" aria-label="role">
+          <select v-model="role" class="form-select" aria-label="role">
             <option selected disabled>Select your role</option>
             <option value="landowner">Landowner</option>
             <option value="biologist">Biologist</option>
@@ -45,7 +45,7 @@
           </div>
         </div>
       </masonry>
-      <RouterLink :to="`/explore?concerns=${getConcernString()}`">
+      <RouterLink :to="`/explore?name=${encodeURIComponent(name)}&location=${encodeURIComponent(location)}&organization=${encodeURIComponent(organization)}&role=${encodeURIComponent(role)}&concerns=${getConcernString()}`">
         <button type="submit" class="btn btn-primary">Explore conservation practices</button>
       </RouterLink>
     </form>
@@ -72,6 +72,10 @@ export default {
       // The toggle state of categories that include concerns the user
       // has interacted with so far
       categoryToggleStates: {},
+      name: '',
+      location: '',
+      organization: '',
+      role: ''
     }
   },
   mounted() {

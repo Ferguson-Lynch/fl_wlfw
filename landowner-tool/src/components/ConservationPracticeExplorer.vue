@@ -81,7 +81,7 @@ export default {
     }
   },
   mounted() {
-    analyticsInstance.track('ConservationPracticeExplorerDidLoad')
+    analyticsInstance.track('conservationPracticeExplorerDidLoad')
   },
   watch: {
     practiceConcernPairs: {
@@ -93,6 +93,13 @@ export default {
           this.$router.isReady().then(() => {
             const sanitizedQueryConcerns = sanitizeUrl(this.$route.query.concerns);
             const chosenConcerns = sanitizedQueryConcerns.split(':');
+            analyticsInstance.track('conservationPracticesDisplayed', {
+              name: this.$route.query.name,
+              location: this.$route.query.location,
+              organization: this.$route.query.organization,
+              role: this.$route.query.role,
+              concerns: chosenConcerns
+            });
             this.loadPage(chosenConcerns);
           });
         }
