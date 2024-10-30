@@ -39,7 +39,7 @@
               </div>
               <div v-for="concern in value" :key="concern" class="form-check">
                 <input type="checkbox" class="form-check-input" :value="concern" v-model="checkedConcerns">
-                <label class="form-check-label" :for="concern" :data-bs-title="concernDescriptions[concern] || ''">{{ concern }}</label>
+                <label class="form-check-label" :for="concern" :title="concernDescriptions[concern] || ''">{{ concern }}</label>
               </div>
             </div>
           </div>
@@ -57,6 +57,7 @@ export const ALL_CHECKED = 'all-checked';
 export const SOME_CHECKED = 'some-checked';
 export const NONE_CHECKED = 'none-checked';
 
+// eslint-disable-next-line
 import * as bootstrap from 'bootstrap'
 import { intersection } from './util.js';
 import analyticsInstance from '../analyticsInstance.js';
@@ -85,18 +86,17 @@ export default {
     this.updateTopLevelCheckmarks();
     analyticsInstance.track('ConcernPickerDidLoad');
 
-    window.bootstrap = bootstrap
-
     // Unfortunately the elements are within a vue-next-masonry component
     // which does not emit a layout-complete event, and requires us to
     // repeat initializing the tooltips regularly. This code is WIP
-    const tooltipList = document.querySelectorAll('[data-bs-title]');
-    tooltipList.forEach(el => {
-      if (el.getAttribute('data-bs-title')) {
-        // console.log(el)
-        new bootstrap.Tooltip(el);
-      }
-    });
+    // window.bootstrap = bootstrap
+    // const tooltipList = document.querySelectorAll('[data-bs-title]');
+    // tooltipList.forEach(el => {
+    //   if (el.getAttribute('data-bs-title')) {
+    //     // console.log(el)
+    //     new bootstrap.Tooltip(el);
+    //   }
+    // });
 
   },
   watch: {
