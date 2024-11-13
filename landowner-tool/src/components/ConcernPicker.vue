@@ -10,8 +10,12 @@
           <input v-model="name" class="form-control" id="name">
         </div>
         <div class="mb-3">
-          <label for="location" class="form-label">Location (state and/or specific region)</label>
-          <input v-model="location" class="form-control" id="location">
+          <label for="state" class="form-label">State</label>
+          <input v-model="state" class="form-control" id="state">
+        </div>
+        <div class="mb-3">
+          <label for="county" class="form-label">County</label>
+          <input v-model="county" class="form-control" id="county">
         </div>
         <div class="mb-3">
           <label for="organization" class="form-label">Organization</label>
@@ -45,7 +49,7 @@
           </div>
         </div>
       </masonry>
-      <RouterLink :to="`/explore?name=${encodeURIComponent(name)}&location=${encodeURIComponent(location)}&organization=${encodeURIComponent(organization)}&role=${encodeURIComponent(role)}&concerns=${getConcernString()}`">
+      <RouterLink :to="`/explore?name=${encodeURIComponent(name)}&state=${encodeURIComponent(state)}&county=${encodeURIComponent(county)}&organization=${encodeURIComponent(organization)}&role=${encodeURIComponent(role)}&concerns=${getConcernString()}`">
         <button type="submit" class="btn btn-primary">Explore conservation practices</button>
       </RouterLink>
     </form>
@@ -75,7 +79,8 @@ export default {
       // has interacted with so far
       categoryToggleStates: {},
       name: '',
-      location: '',
+      state: '',
+      county: '',
       organization: '',
       role: '',
       concernDescriptions

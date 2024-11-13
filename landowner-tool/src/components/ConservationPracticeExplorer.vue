@@ -98,7 +98,8 @@ export default {
             // Should rewrite to log the same object to DynamoDB
             analyticsInstance.track('conservationPracticesDisplayed', {
               name: this.$route.query.name,
-              location: this.$route.query.location,
+              state: this.$route.query.state,
+              county: this.$route.query.county,
               organization: this.$route.query.organization,
               role: this.$route.query.role,
               concerns: chosenConcerns
