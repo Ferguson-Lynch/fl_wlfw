@@ -19,6 +19,7 @@
             class="form-select"
             id="state"
             required
+            aria-required="true"
           >
             <option selected disabled>Select your state</option>
             <option value="AL">Alabama</option>
@@ -86,6 +87,7 @@
             class="form-control"
             id="county"
             required
+            aria-required="true"
           >
           <div v-if="errors.county" class="invalid-feedback">County is required.</div>
         </div>
@@ -99,6 +101,9 @@
             class="form-control"
             id="organization"
             required>
+            required
+            aria-required="true"
+          >
             <div v-if="errors.organization" class="invalid-feedback">Organization is required.</div>
         </div>
         <div class="mb-3">
