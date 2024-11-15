@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-    <a href="/" class="btn btn-light"><i class="bi bi-arrow-left me-2"></i>Start Over</a>
+    <router-link
+      :to="{ path: '/', query: { ...$route.query } }"
+      class="btn btn-light"
+    >
+      <i class="bi bi-arrow-left me-2"></i>
+      Start Over
+    </router-link>
   </div>
   <div class="container">
     <h2 class="text-center">NRCS Conservation Practices that Address Your Resource Concerns</h2>
@@ -60,7 +66,8 @@ function sortByConservationPracticeEffectScores(practiceConcernPairs) {
     }
     conservationPracticeCumulativeEffectScores[pair['conservation_practice']] += Number(pair['value']);
   }
-  console.log(conservationPracticeCumulativeEffectScores);
+  // console.log(conservationPracticeCumulativeEffectScores);
+
   // Pairs with conservation practices with a higher cumulative value first
   practiceConcernPairs.sort(practiceConcernPairCompareFn);
 
