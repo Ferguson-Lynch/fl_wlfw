@@ -11,7 +11,15 @@
         </div>
         <div class="mb-3">
           <label for="state" class="form-label">State</label>
-          <select v-model="state" class="form-select" id="state" required>
+          <select
+            v-model="state"
+            @blur="validateField('state')"
+            @change="validateField('state')"
+            :class="{'is-invalid': errors.state, 'is-valid': !errors.state && state}"
+            class="form-select"
+            id="state"
+            required
+          >
             <option selected disabled>Select your state</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -66,14 +74,32 @@
             <option value="WY">Wyoming</option>
             <option value="NONE">None</option>
           </select>
+          <div v-if="errors.state" class="invalid-feedback">State is required.</div>
         </div>
         <div class="mb-3">
           <label for="county" class="form-label">County</label>
-          <input v-model="county" class="form-control" id="county" required>
+          <input
+            v-model="county"
+            @blur="validateField('county')"
+            @input="validateField('county')"
+            :class="{'is-invalid': errors.county, 'is-valid': !errors.county && county}"
+            class="form-control"
+            id="county"
+            required
+          >
+          <div v-if="errors.county" class="invalid-feedback">County is required.</div>
         </div>
         <div class="mb-3">
           <label for="organization" class="form-label">Organization</label>
-          <input v-model="organization" class="form-control" id="organization" required>
+          <input
+            v-model="organization"
+            @blur="validateField('organization')"
+            @input="validateField('organization')"
+            :class="{'is-invalid': errors.organization, 'is-valid': !errors.organization && organization}"
+            class="form-control"
+            id="organization"
+            required>
+            <div v-if="errors.organization" class="invalid-feedback">Organization is required.</div>
         </div>
         <div class="mb-3">
           <label class="form-label">Role</label>
@@ -137,7 +163,16 @@ export default {
       county: '',
       organization: '',
       role: '',
-      concernDescriptions
+      concernDescriptions,
+      errors: {}
+    }
+  },
+  computed: {
+    isValid() {
+      return this.state // && this.county && this.organization;
+    },
+    exploreLink() {
+      return `/explore?name=${encodeURIComponent(this.name)}&state=${encodeURIComponent(this.state)}&county=${encodeURIComponent(this.county)}&organization=${encodeURIComponent(this.organization)}&role=${encodeURIComponent(this.role)}&concerns=${this.getConcernString()}`
     }
   },
   mounted() {
@@ -166,6 +201,13 @@ export default {
     },
   },
   methods: {
+    validateField(field) {
+      if (!this[field]) {
+        this.errors[field] = true;
+      } else {
+        this.errors[field] = false;
+      }
+    },
     getConcernString() {
       store.checkedConcerns = this.checkedConcerns;
       const concernURLString = this.checkedConcerns.join(':');
