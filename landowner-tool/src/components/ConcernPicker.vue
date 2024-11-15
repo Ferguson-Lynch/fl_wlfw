@@ -136,9 +136,19 @@
           </div>
         </div>
       </masonry>
-      <RouterLink :to="`/explore?name=${encodeURIComponent(name)}&state=${encodeURIComponent(state)}&county=${encodeURIComponent(county)}&organization=${encodeURIComponent(organization)}&role=${encodeURIComponent(role)}&concerns=${getConcernString()}`">
-        <button type="submit" class="btn btn-primary">Explore conservation practices</button>
+      <RouterLink
+        class="btn btn-primary"
+        :class="{ 'disabled': !isValid, 'btn-secondary': !isValid }"
+        :to="isValid
+          ? `/explore?name=${encodeURIComponent(name)}&state=${encodeURIComponent(state)}&county=${encodeURIComponent(county)}&organization=${encodeURIComponent(organization)}&role=${encodeURIComponent(role)}&concerns=${getConcernString()}`
+          : '#'"
+      >
+        Explore conservation practices
       </RouterLink>
+      <!-- Error Message when the form is invalid -->
+      <div v-if="!isValid" class="text-muted mt-2">
+          <small>Please fill in all required fields to continue.</small>
+        </div>
     </form>
   </div>
 </template>
