@@ -7,16 +7,16 @@
       <div class="container-md">
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input v-model="name" class="form-control" id="name">
+          <input v-model="store.name" class="form-control" id="name">
         </div>
         <div class="mb-3">
           <label for="state" class="form-label">State</label>
           <span class="required-indicator"> *</span>
           <select
-            v-model="state"
+            v-model="store.state"
             @blur="validateField('state')"
             @change="validateField('state')"
-            :class="{'is-invalid': errors.state, 'is-valid': !errors.state && state}"
+            :class="{'is-invalid': errors.state, 'is-valid': !errors.state && store.state}"
             class="form-select"
             id="state"
             required
@@ -82,10 +82,10 @@
           <label for="county" class="form-label">County</label>
           <span class="required-indicator"> *</span>
           <input
-            v-model="county"
+            v-model="store.county"
             @blur="validateField('county')"
             @input="validateField('county')"
-            :class="{'is-invalid': errors.county, 'is-valid': !errors.county && county}"
+            :class="{'is-invalid': errors.county, 'is-valid': !errors.county && store.county}"
             class="form-control"
             id="county"
             required
@@ -97,10 +97,10 @@
           <label for="organization" class="form-label">Organization</label>
           <span class="required-indicator"> *</span>
           <input
-            v-model="organization"
+            v-model="store.organization"
             @blur="validateField('organization')"
             @input="validateField('organization')"
-            :class="{'is-invalid': errors.organization, 'is-valid': !errors.organization && organization}"
+            :class="{'is-invalid': errors.organization, 'is-valid': !errors.organization && store.organization}"
             class="form-control"
             id="organization"
             required
@@ -110,7 +110,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Role</label>
-          <select v-model="role" class="form-select" aria-label="role">
+          <select v-model="store.role" class="form-select" aria-label="role">
             <option selected disabled>Select your role</option>
             <option value="landowner">Landowner</option>
             <option value="biologist">Biologist</option>
@@ -165,18 +165,18 @@ export default {
       // The toggle state of categories that include concerns the user
       // has interacted with so far
       categoryToggleStates: {},
-      name: '',
-      state: '',
-      county: '',
-      organization: '',
-      role: '',
+      name: store.name,
+      state: store.state,
+      county: store.county,
+      organization: store.organization,
+      role: store.role,
       concernDescriptions,
       errors: {}
     }
   },
   computed: {
     isValid() {
-      return this.state // && this.county && this.organization;
+      return store.state && store.county && store.organization;
     },
     exploreLink() {
       return `/explore?name=${encodeURIComponent(this.name)}&state=${encodeURIComponent(this.state)}&county=${encodeURIComponent(this.county)}&organization=${encodeURIComponent(this.organization)}&role=${encodeURIComponent(this.role)}&concerns=${this.getConcernString()}`
@@ -184,7 +184,9 @@ export default {
   },
   mounted() {
     // Update from store when navigating backwards to this page
-    this.updateTopLevelCheckmarks();
+    // Wait 100ms before updating top level checkmarks to avoid race condition
+    setTimeout(this.updateTopLevelCheckmarks, 100)
+
     analyticsInstance.track('ConcernPickerDidLoad');
 
     // Unfortunately the elements are within a vue-next-masonry component
@@ -209,7 +211,7 @@ export default {
   },
   methods: {
     validateField(field) {
-      if (!this[field]) {
+      if (!store[field]) {
         this.errors[field] = true;
       } else {
         this.errors[field] = false;

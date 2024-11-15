@@ -1,5 +1,10 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-  checkedConcerns: []
+  checkedConcerns: [],
+  name: '',
+  state: '',
+  county: '',
+  organization: '',
+  role: ''
 })
