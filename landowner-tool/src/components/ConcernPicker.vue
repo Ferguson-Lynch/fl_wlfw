@@ -11,6 +11,7 @@
         </div>
         <div class="mb-3">
           <label for="state" class="form-label">State</label>
+          <span class="required-indicator"> *</span>
           <select
             v-model="state"
             @blur="validateField('state')"
@@ -79,6 +80,7 @@
         </div>
         <div class="mb-3">
           <label for="county" class="form-label">County</label>
+          <span class="required-indicator"> *</span>
           <input
             v-model="county"
             @blur="validateField('county')"
@@ -93,6 +95,7 @@
         </div>
         <div class="mb-3">
           <label for="organization" class="form-label">Organization</label>
+          <span class="required-indicator"> *</span>
           <input
             v-model="organization"
             @blur="validateField('organization')"
@@ -100,7 +103,6 @@
             :class="{'is-invalid': errors.organization, 'is-valid': !errors.organization && organization}"
             class="form-control"
             id="organization"
-            required>
             required
             aria-required="true"
           >
@@ -276,5 +278,9 @@ import { store } from '../store.js'
 <style scoped>
 .card {
   margin: 15px;
+}
+
+.required-indicator {
+  color :red;
 }
 </style>
