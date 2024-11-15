@@ -140,7 +140,7 @@
         class="btn btn-primary"
         :class="{ 'disabled': !isValid, 'btn-secondary': !isValid }"
         :to="isValid
-          ? `/explore?name=${encodeURIComponent(name)}&state=${encodeURIComponent(state)}&county=${encodeURIComponent(county)}&organization=${encodeURIComponent(organization)}&role=${encodeURIComponent(role)}&concerns=${getConcernString()}`
+          ? `/explore?name=${encodeURIComponent(store.name)}&state=${encodeURIComponent(store.state)}&county=${encodeURIComponent(store.county)}&organization=${encodeURIComponent(store.organization)}&role=${encodeURIComponent(store.role)}&concerns=${getConcernString()}`
           : '#'"
       >
         Explore conservation practices
