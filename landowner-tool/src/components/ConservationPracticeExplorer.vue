@@ -23,12 +23,15 @@
     <div id="heatmap-legend"></div>
     <div id="heatmap-sidebar"></div>
     <div id="heatmap"></div>
-    <!--<button @click="exportToPdf"></button>-->
+    <div class="download-container">
+      <button class="btn btn-primary mt-3" @click="downloadCSV"><i class="bi bi-cloud-arrow-down-fill"></i> Download (CSV)</button>
+    </div>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3';
+import Papa from 'papaparse';
 import jsPDF from 'jspdf';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import analyticsInstance from '../analyticsInstance.js';
@@ -133,6 +136,50 @@ export default {
       }
       const heatmapHeight = HEATMAP_ROW_HEIGHT * relevantConservationPractices.size;
       this.createHeatmap(heatmapWidth, heatmapHeight);
+    },
+    downloadCSV() {
+
+      // Retructure practice concern pairs from a list of objects to a list of lists
+      // This process prepares it for export in CSV format
+      // Before: [{conservation_practice: "", concern: "", value: "2"}, ...]
+      // After: [[concerns header], [practice and scores row], [practice and scores row], ...]
+      function restructurePracticeConcernPairs(data) {
+        // Extract unique column names from the data
+        const columns = [...new Set(data.map(item => item.concern))];
+    
+        // Initialize the table with the first row as column headers
+        const table = [['Conservation Practice', ...columns]];
+
+        // Group data by conservation practice
+        const groupedData = data.reduce((acc, item) => {
+          if (!acc[item.conservation_practice]) {
+              acc[item.conservation_practice] = {};
+          }
+          acc[item.conservation_practice][item.concern] = item.value;
+          return acc;
+        }, {});
+
+        // Populate the table rows
+        for (const [practice, concerns] of Object.entries(groupedData)) {
+            const row = [practice];
+            for (const column of columns) {
+                row.push(concerns[column] || ""); // Fill with empty string if no value exists
+            }
+            table.push(row);
+        }
+        return table;
+      }
+
+      // Restructure concern
+      const concernsData = restructurePracticeConcernPairs(this.relevantPracticeConcernPairs);
+      const csv = Papa.unparse(concernsData, {header: true});
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'concerns.csv';
+      link.click()
+      URL.revokeObjectURL(url)
     },
     createHeatmap(heatmapWidth, heatmapHeight) {
       let svg = this.initializeHeatmapSVG(heatmapWidth, heatmapHeight);
